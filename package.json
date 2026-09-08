@@ -1,0 +1,20 @@
+{
+  "name": "doctor-portfolio-intake",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Professional Doctor Portfolio Onboarding & Digital Presence Data Collection Suite",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "doctor-portfolio",
+    "healthcare-intake",
+    "medical-portfolio",
+    "social-profiles",
+    "doctor-onboarding"
+  ],
+  "author": "DocFolio Studio",
+  "license": "MIT"
+}
