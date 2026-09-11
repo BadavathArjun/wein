@@ -193,7 +193,7 @@ class DocFolioApp {
         const numEl = document.getElementById('mobileBarNum');
         const titleEl = document.getElementById('mobileBarTitle');
 
-        if (numEl) numEl.textContent = `${num}/11`;
+        if (numEl) numEl.textContent = `${num}/10`;
         if (titleEl) titleEl.textContent = name;
 
         if (btnBarPrev) {
@@ -388,11 +388,9 @@ class DocFolioApp {
     }
 
     // 10. Additional Notes & Custom Requests
-    if (notes.customRequests || notes.additionalLinks || notes.targetTimeline) {
-      msg += `*📝 10. ADDITIONAL NOTES & CUSTOM REQUESTS*\n`;
-      if (notes.customRequests) msg += `• *Special Requests*: ${notes.customRequests}\n`;
-      if (notes.additionalLinks) msg += `• *Additional Links*: ${notes.additionalLinks}\n`;
-      if (notes.targetTimeline) msg += `• *Preferred Timeline*: ${notes.targetTimeline}\n\n`;
+    if (notes.customRequests) {
+      msg += `*📝 10. ADDITIONAL NOTES & SPECIAL REQUESTS*\n`;
+      msg += `• *Notes*: ${notes.customRequests}\n\n`;
     }
 
     // 9. Design Preferences
@@ -521,9 +519,7 @@ class DocFolioApp {
         primaryCta: document.getElementById('docPrimaryCta')?.value || 'Book OPD Consultation'
       },
       additionalNotes: {
-        customRequests: document.getElementById('docCustomRequests')?.value.trim() || '',
-        additionalLinks: document.getElementById('docAdditionalLinks')?.value.trim() || '',
-        targetTimeline: document.getElementById('docTargetTimeline')?.value || 'Standard (Within 5–7 days)'
+        customRequests: document.getElementById('docCustomRequests')?.value.trim() || ''
       },
       timestamp: new Date().toISOString()
     };
@@ -594,8 +590,6 @@ class DocFolioApp {
 
     if (data.additionalNotes) {
       if (data.additionalNotes.customRequests) document.getElementById('docCustomRequests').value = data.additionalNotes.customRequests;
-      if (data.additionalNotes.additionalLinks) document.getElementById('docAdditionalLinks').value = data.additionalNotes.additionalLinks;
-      if (data.additionalNotes.targetTimeline) document.getElementById('docTargetTimeline').value = data.additionalNotes.targetTimeline;
     }
 
     this.saveDraft();
@@ -641,8 +635,7 @@ class DocFolioApp {
     const sec7Filled = !!(data.research.publicationsCount || data.research.keyPapers);
     const sec8Filled = !!(data.mediaAssets.headshotUrl || data.mediaAssets.clinicPhotosUrl);
     const sec9Filled = !!(data.designPreferences.colorMood);
-    const sec10Filled = !!(data.additionalNotes?.customRequests || data.additionalNotes?.additionalLinks);
-    const sec11Filled = sec1Filled && (sec2Filled || sec3Filled);
+    const sec10Filled = sec1Filled && (sec2Filled || sec3Filled);
 
     const sectionsStatus = [
       { id: 'stepCheck01', drawerId: 'drawerCheck01', cardId: 'section1Card', filled: sec1Filled },
@@ -654,8 +647,7 @@ class DocFolioApp {
       { id: 'stepCheck07', drawerId: 'drawerCheck07', cardId: 'section7Card', filled: sec7Filled },
       { id: 'stepCheck08', drawerId: 'drawerCheck08', cardId: 'section8Card', filled: sec8Filled },
       { id: 'stepCheck09', drawerId: 'drawerCheck09', cardId: 'section9Card', filled: sec9Filled },
-      { id: 'stepCheck10', drawerId: 'drawerCheck10', cardId: 'section10Card', filled: sec10Filled },
-      { id: 'stepCheck11', drawerId: 'drawerCheck11', cardId: 'section11Card', filled: sec11Filled }
+      { id: 'stepCheck10', drawerId: 'drawerCheck10', cardId: 'section10Card', filled: sec10Filled }
     ];
 
     let filledCount = 0;
@@ -676,7 +668,7 @@ class DocFolioApp {
       }
     });
 
-    const percent = Math.min(100, Math.round((filledCount / 11) * 100));
+    const percent = Math.min(100, Math.round((filledCount / 10) * 100));
 
     const fillBar = document.getElementById('heroProgressFill');
     const percentLabel = document.getElementById('heroProgressPercent');
@@ -687,8 +679,8 @@ class DocFolioApp {
     if (fillBar) fillBar.style.width = `${percent}%`;
     if (mobileFill) mobileFill.style.width = `${percent}%`;
     if (percentLabel) percentLabel.textContent = `${percent}% Complete`;
-    if (stepsLabel) stepsLabel.textContent = `${filledCount} of 11 Sections Filled`;
-    if (drawerText) drawerText.textContent = `${filledCount} of 11 Completed (${percent}%)`;
+    if (stepsLabel) stepsLabel.textContent = `${filledCount} of 10 Sections Filled`;
+    if (drawerText) drawerText.textContent = `${filledCount} of 10 Completed (${percent}%)`;
   }
 
   showToast(message, type = 'info') {
