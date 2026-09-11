@@ -60,12 +60,18 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // Static File Serving
-  let filePath = path.join(__dirname, pathname === '/' ? 'index.html' : pathname);
+  // Static File Serving with multi-path resolution
+  const relativePath = pathname === '/' ? 'index.html' : pathname.replace(/^\//, '');
+  let filePath = path.join(__dirname, relativePath);
+
+  if (!fs.existsSync(filePath)) {
+    filePath = path.join(process.cwd(), relativePath);
+  }
   filePath = path.normalize(filePath);
 
-  // Security check: ensure path is within __dirname
-  if (!filePath.startsWith(__dirname)) {
+  // Security check: ensure path is within __dirname or process.cwd()
+  const isSafe = filePath.startsWith(__dirname) || filePath.startsWith(process.cwd());
+  if (!isSafe) {
     res.writeHead(403, { 'Content-Type': 'text/plain' });
     res.end('Access Denied');
     return;
@@ -73,13 +79,15 @@ const server = http.createServer((req, res) => {
 
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
-      // If file not found, fallback to index.html for SPA-style handling or 404
-      if (pathname.includes('.')) {
+      // If file not found, fallback to index.html for SPA-style handling
+      if (pathname.includes('.') && !pathname.endsWith('.html')) {
         res.writeHead(404, { 'Content-Type': 'text/plain' });
         res.end('404 Not Found');
         return;
       }
-      filePath = path.join(__dirname, 'index.html');
+      filePath = fs.existsSync(path.join(__dirname, 'index.html'))
+        ? path.join(__dirname, 'index.html')
+        : path.join(process.cwd(), 'index.html');
     }
 
     const ext = path.extname(filePath).toLowerCase();
@@ -87,8 +95,8 @@ const server = http.createServer((req, res) => {
 
     fs.readFile(filePath, (readErr, content) => {
       if (readErr) {
-        res.writeHead(500, { 'Content-Type': 'text/plain' });
-        res.end('Server Error loading file');
+        res.writeHead(404, { 'Content-Type': 'text/html' });
+        res.end('<!DOCTYPE html><html><body><h2>DocFolio Portal: Page not found</h2><p><a href="/">Return to Home</a></p></body></html>');
         return;
       }
       res.writeHead(200, {
@@ -119,5 +127,9 @@ function startServer(port, attempts = 0) {
   });
 }
 
-startServer(Number(PORT));
+// Start server locally when not on Vercel
+if (!process.env.VERCEL) {
+  startServer(Number(PORT));
+}
 
+export default server;
