@@ -41,7 +41,7 @@ const server = http.createServer((req, res) => {
         const doctorName = data.identity?.fullName || 'Doctor';
         const submissionId = `DOC-${Date.now().toString().slice(-6)}`;
 
-        console.log(`📥 Intake received for ${doctorName} (ID: ${submissionId}) -> Forwarding directly to WhatsApp`);
+        console.log(`📥 Intake received for ${doctorName} (ID: ${submissionId}) -> Forwarding directly to WhatsApp (+91 9493690611)`);
 
         res.writeHead(200, {
           'Content-Type': 'application/json',
@@ -79,7 +79,6 @@ const server = http.createServer((req, res) => {
 
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
-      // If file not found, fallback to index.html for SPA-style handling
       if (pathname.includes('.') && !pathname.endsWith('.html')) {
         res.writeHead(404, { 'Content-Type': 'text/plain' });
         res.end('404 Not Found');
@@ -127,9 +126,4 @@ function startServer(port, attempts = 0) {
   });
 }
 
-// Start server locally when not on Vercel
-if (!process.env.VERCEL) {
-  startServer(Number(PORT));
-}
-
-export default server;
+startServer(Number(PORT));

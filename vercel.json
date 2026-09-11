@@ -1,17 +1,9 @@
 {
-  "version": 2,
   "cleanUrls": true,
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/submit",
-      "dest": "/api/submit.js"
-    },
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/api/submit",
+      "destination": "/api/submit.js"
     }
   ]
 }
