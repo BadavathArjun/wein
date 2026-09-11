@@ -2,15 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Doctor Portfolio Intake Suite — Executive Medical Onboarding Portal</title>
-  <meta name="description" content="Professional portfolio and digital presence onboarding portal for medical specialists, surgeons, and physicians." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>DocFolio Medical — Executive Doctor Portfolio Intake Suite</title>
+  <meta name="description" content="Professional medical onboarding portal for physicians, surgeons, and healthcare specialists to craft bespoke, high-converting portfolio websites." />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍⚕️</text></svg>" />
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="src/css/main.css" />
-  <link rel="stylesheet" href="src/css/section10.css" />
-  <link rel="stylesheet" href="src/css/preview.css" />
 </head>
 <body>
 
@@ -25,20 +23,17 @@
           </svg>
         </div>
         <div class="brand-info">
-          <h1>DocFolio<span>Intake</span></h1>
-          <p>Medical Portfolio & Digital Presence Suite</p>
+          <h1>DocFolio<span>Medical</span></h1>
+          <p>Executive Doctor Portfolio &amp; Digital Presence Suite</p>
         </div>
       </div>
 
       <div class="header-actions">
-        <!-- Mode Switcher -->
-        <div class="mode-pills" title="Switch form view mode">
-          <button type="button" class="mode-pill-btn active" id="btnModeAll">
-            <span>📋</span> Full Intake (10 Sec)
-          </button>
-          <button type="button" class="mode-pill-btn" id="btnModeSection10">
-            <span>🌐</span> Section 10 Express
-          </button>
+        <!-- Status Badge -->
+        <div class="mode-pills">
+          <span class="mode-pill-btn active" style="cursor: default;">
+            <span>🛡️</span> Verified Healthcare Network
+          </span>
         </div>
 
         <!-- Auto-save Status -->
@@ -49,7 +44,7 @@
 
         <!-- Quick Demo Autofill Button -->
         <button type="button" class="btn btn-secondary btn-sm" id="btnAutofillDemo" title="Pre-fill with realistic Orthopedic Surgeon sample profile">
-          <span>✨</span> Demo Data
+          <span>✨</span> Demo Doctor
         </button>
       </div>
     </div>
@@ -60,12 +55,12 @@
     <div class="portal-hero-inner">
       <div class="portal-hero-content">
         <div class="hero-tag">
-          <span>🔒 Verified Healthcare Agency Portal</span>
+          <span>🔒 Verified Healthcare Agency Portal • Direct WhatsApp Transfer</span>
         </div>
         <h2>Build Your Elite <span>Doctor Portfolio</span></h2>
         <p>
-          Welcome, Doctor. Please share your clinical credentials, hospital affiliations, and verified online profiles. 
-          Our healthcare web design team uses this information to craft your bespoke, high-converting portfolio website.
+          Welcome, Doctor. Share your clinical qualifications, hospital appointments, and surgical expertise. 
+          Our healthcare design studio packages your profile and routes everything directly to WhatsApp (+91 9493690611) to craft your bespoke portfolio website.
         </p>
         <div class="hero-highlights">
           <div class="hero-stat">
@@ -73,12 +68,12 @@
             <div><strong>3–5 Min</strong> Quick Completion</div>
           </div>
           <div class="hero-stat">
-            <div class="hero-stat-icon">🛡️</div>
-            <div><strong>HIPAA & Consent</strong> Compliant</div>
+            <div class="hero-stat-icon">📱</div>
+            <div><strong>Direct WhatsApp</strong> Delivery</div>
           </div>
           <div class="hero-stat">
-            <div class="hero-stat-icon">👁️</div>
-            <div><strong>Live Preview</strong> as you type</div>
+            <div class="hero-stat-icon">🔒</div>
+            <div><strong>100% Direct</strong> WhatsApp Send</div>
           </div>
         </div>
       </div>
@@ -88,18 +83,18 @@
           <div class="hero-card-title">
             <span>📊 Intake Progress</span>
           </div>
-          <span class="hero-card-badge" id="heroProgressPercent">15% Complete</span>
+          <span class="hero-card-badge" id="heroProgressPercent">10% Complete</span>
         </div>
         <div class="hero-progress-bar">
-          <div class="hero-progress-fill" id="heroProgressFill" style="width: 15%;"></div>
+          <div class="hero-progress-fill" id="heroProgressFill" style="width: 10%;"></div>
         </div>
         <div class="progress-labels">
-          <span id="heroProgressSteps">1 of 10 Key Sections Filled</span>
-          <span>Draft Saved Locally</span>
+          <span id="heroProgressSteps">1 of 10 Sections Filled</span>
+          <span>Draft Saved In Browser</span>
         </div>
         <div class="hero-btn-row">
-          <a href="#section10Card" class="btn btn-primary" style="flex: 1;">
-            <span>🌐</span> Jump to Section 10 (Social Profiles)
+          <a href="#section1Card" class="btn btn-primary" style="flex: 1;">
+            <span>🚀</span> Start Portfolio Intake
           </a>
           <button type="button" class="btn btn-ghost-light" id="btnResetForm" title="Reset all typed data">
             <span>↺</span> Reset
@@ -115,8 +110,8 @@
     <!-- LEFT COLUMN: Sticky Navigation Sidebar -->
     <aside class="sections-sidebar">
       <div class="sidebar-title">
-        <span>Portfolio Sections</span>
-        <span>10 Steps</span>
+        <span>Portfolio Steps</span>
+        <span>10 Sections</span>
       </div>
       <ul class="sidebar-nav-list">
         <li>
@@ -125,7 +120,7 @@
               <span class="nav-step-num">01</span>
               <span>👨‍⚕️ Basic Identity</span>
             </span>
-            <span class="nav-step-status">Required</span>
+            <span class="nav-step-check" id="stepCheck01">✓</span>
           </a>
         </li>
         <li>
@@ -134,6 +129,7 @@
               <span class="nav-step-num">02</span>
               <span>🎓 Qualifications</span>
             </span>
+            <span class="nav-step-check" id="stepCheck02">✓</span>
           </a>
         </li>
         <li>
@@ -142,46 +138,52 @@
               <span class="nav-step-num">03</span>
               <span>🏥 Clinical Practice</span>
             </span>
+            <span class="nav-step-check" id="stepCheck03">✓</span>
           </a>
         </li>
         <li>
           <a href="#section4Card" class="nav-step-item">
             <span class="nav-step-label">
               <span class="nav-step-num">04</span>
-              <span>🩺 Focus & Surgeries</span>
+              <span>🩺 Treatments &amp; Focus</span>
             </span>
+            <span class="nav-step-check" id="stepCheck04">✓</span>
           </a>
         </li>
         <li>
           <a href="#section5Card" class="nav-step-item">
             <span class="nav-step-label">
               <span class="nav-step-num">05</span>
-              <span>📍 Clinic & OPD Timings</span>
+              <span>📍 Clinic &amp; OPD Hours</span>
             </span>
+            <span class="nav-step-check" id="stepCheck05">✓</span>
           </a>
         </li>
         <li>
           <a href="#section6Card" class="nav-step-item">
             <span class="nav-step-label">
               <span class="nav-step-num">06</span>
-              <span>🏆 Awards & Statistics</span>
+              <span>🏆 Awards &amp; Statistics</span>
             </span>
+            <span class="nav-step-check" id="stepCheck06">✓</span>
           </a>
         </li>
         <li>
           <a href="#section7Card" class="nav-step-item">
             <span class="nav-step-label">
               <span class="nav-step-num">07</span>
-              <span>📚 Research & Papers</span>
+              <span>📚 Research &amp; Papers</span>
             </span>
+            <span class="nav-step-check" id="stepCheck07">✓</span>
           </a>
         </li>
         <li>
           <a href="#section8Card" class="nav-step-item">
             <span class="nav-step-label">
               <span class="nav-step-num">08</span>
-              <span>📸 Photos & Media</span>
+              <span>📸 Photos &amp; WhatsApp</span>
             </span>
+            <span class="nav-step-check" id="stepCheck08">✓</span>
           </a>
         </li>
         <li>
@@ -190,23 +192,16 @@
               <span class="nav-step-num">09</span>
               <span>🎨 Design Preferences</span>
             </span>
-          </a>
-        </li>
-        <li>
-          <a href="#section10Card" class="nav-step-item featured" id="navStep10">
-            <span class="nav-step-label">
-              <span class="nav-step-num">10</span>
-              <span>🌐 Social & Profiles</span>
-            </span>
-            <span class="consent-badge badge-success">Highlighted</span>
+            <span class="nav-step-check" id="stepCheck09">✓</span>
           </a>
         </li>
         <li>
           <a href="#section11Card" class="nav-step-item">
             <span class="nav-step-label">
-              <span class="nav-step-num">11</span>
-              <span>📋 Review & Submit</span>
+              <span class="nav-step-num">10</span>
+              <span>📋 Review &amp; Submit</span>
             </span>
+            <span class="nav-step-check" id="stepCheck10">✓</span>
           </a>
         </li>
       </ul>
@@ -214,7 +209,7 @@
       <div class="sidebar-quick-card">
         <h4><span>💡</span> Designer Tip</h4>
         <p>
-          Doctors with verified links (Practo, Google Reviews, LinkedIn) receive <strong>3.4x more private appointment inquiries</strong> on their portfolio sites.
+          Doctors with verified clinical links and photos receive <strong>3.4x more private appointment inquiries</strong> on their custom portfolio websites.
         </p>
       </div>
     </aside>
@@ -227,25 +222,36 @@
         <div class="form-section-card" id="section1Card">
           <div class="section-header-block">
             <span class="section-badge">Section 01 / 10</span>
-            <h3>👨‍⚕️ Doctor Identity & Primary Contact</h3>
+            <h3>👨‍⚕️ Doctor Identity &amp; Primary Contact</h3>
             <p>Enter your professional name, honorific, specialty, and preferred contact coordinates for patient inquiries.</p>
           </div>
 
           <div class="form-grid-2">
             <div class="form-group">
-              <label class="form-label" for="docFullName">Full Name (with Title) <span class="required-mark">*</span></label>
+              <label class="form-label" for="docFullName">Full Name (with Honorific) <span class="required-mark">*</span></label>
               <input type="text" class="form-control" id="docFullName" placeholder="e.g. Dr. K. Prashanth Kumar" required />
             </div>
             <div class="form-group">
-              <label class="form-label" for="docDegrees">Degrees & Post-nominals <span class="required-mark">*</span></label>
+              <label class="form-label" for="docDegrees">Degrees &amp; Post-nominals <span class="required-mark">*</span></label>
               <input type="text" class="form-control" id="docDegrees" placeholder="e.g. MBBS, MS (Ortho), DNB, MNAMS, MCh" required />
+              <div class="quick-chip-row">
+                <span class="quick-chip-label">Quick add:</span>
+                <button type="button" class="quick-chip" data-target="docDegrees" data-value="MBBS">MBBS</button>
+                <button type="button" class="quick-chip" data-target="docDegrees" data-value="MD">MD</button>
+                <button type="button" class="quick-chip" data-target="docDegrees" data-value="MS">MS</button>
+                <button type="button" class="quick-chip" data-target="docDegrees" data-value="DNB">DNB</button>
+                <button type="button" class="quick-chip" data-target="docDegrees" data-value="MCh">MCh</button>
+                <button type="button" class="quick-chip" data-target="docDegrees" data-value="DM">DM</button>
+                <button type="button" class="quick-chip" data-target="docDegrees" data-value="FRCS">FRCS</button>
+                <button type="button" class="quick-chip" data-target="docDegrees" data-value="MNAMS">MNAMS</button>
+              </div>
             </div>
           </div>
 
           <div class="form-grid-2">
             <div class="form-group">
-              <label class="form-label" for="docSpecialty">Primary Specialty & Clinical Title <span class="required-mark">*</span></label>
-              <input type="text" class="form-control" id="docSpecialty" placeholder="e.g. Senior Consultant Orthopedic & Joint Replacement Surgeon" required />
+              <label class="form-label" for="docSpecialty">Primary Specialty &amp; Clinical Title <span class="required-mark">*</span></label>
+              <input type="text" class="form-control" id="docSpecialty" placeholder="e.g. Senior Consultant Orthopedic &amp; Joint Replacement Surgeon" required />
             </div>
             <div class="form-group">
               <label class="form-label" for="docGender">Gender <span class="optional-mark">(For bio pronouns)</span></label>
@@ -259,11 +265,11 @@
 
           <div class="form-grid-3">
             <div class="form-group">
-              <label class="form-label" for="docPhone">Official Phone <span class="required-mark">*</span></label>
+              <label class="form-label" for="docPhone">Official Contact Phone <span class="required-mark">*</span></label>
               <input type="tel" class="form-control" id="docPhone" placeholder="+91 98490 12345" />
             </div>
             <div class="form-group">
-              <label class="form-label" for="docWhatsapp">WhatsApp Number <span class="optional-mark">(For quick booking)</span></label>
+              <label class="form-label" for="docWhatsapp">WhatsApp Number <span class="optional-mark">(For patient bookings)</span></label>
               <input type="tel" class="form-control" id="docWhatsapp" placeholder="+91 98490 12345" />
             </div>
             <div class="form-group">
@@ -273,8 +279,8 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="docCity">City & State / Region of Practice</label>
-            <input type="text" class="form-control" id="docCity" placeholder="e.g. Hyderabad & Nirmal, Telangana" />
+            <label class="form-label" for="docCity">City &amp; State / Region of Practice</label>
+            <input type="text" class="form-control" id="docCity" placeholder="e.g. Hyderabad &amp; Nirmal, Telangana" />
           </div>
         </div>
 
@@ -282,12 +288,12 @@
         <div class="form-section-card" id="section2Card">
           <div class="section-header-block">
             <span class="section-badge">Section 02 / 10</span>
-            <h3>🎓 Medical Education & Qualifications</h3>
+            <h3>🎓 Medical Education &amp; Qualifications</h3>
             <p>Outline your medical alma mater, post-graduate degrees, international fellowships, and council registration.</p>
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="docUndergraduate">Undergraduate Degree (MBBS) & College</label>
+            <label class="form-label" for="docUndergraduate">Undergraduate Degree (MBBS) &amp; College</label>
             <input type="text" class="form-control" id="docUndergraduate" placeholder="e.g. MBBS — Osmania Medical College, Hyderabad (2008)" />
           </div>
 
@@ -297,8 +303,8 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="docFellowships">Fellowships & Advanced Observerships</label>
-            <textarea class="form-control" id="docFellowships" rows="2" placeholder="e.g. Fellowship in Computer-Navigated & Robotic Knee Arthroplasty (Germany), Sports Arthroscopy (Singapore)"></textarea>
+            <label class="form-label" for="docFellowships">Fellowships &amp; Advanced Observerships</label>
+            <textarea class="form-control" id="docFellowships" rows="2" placeholder="e.g. Fellowship in Computer-Navigated &amp; Robotic Knee Arthroplasty (Germany), Sports Arthroscopy (Singapore)"></textarea>
           </div>
 
           <div class="form-group">
@@ -311,7 +317,7 @@
         <div class="form-section-card" id="section3Card">
           <div class="section-header-block">
             <span class="section-badge">Section 03 / 10</span>
-            <h3>🏥 Clinical Practice & Current Appointments</h3>
+            <h3>🏥 Clinical Practice &amp; Current Appointments</h3>
             <p>Tell us about your current practice base, hospitals, and total years in active medical service.</p>
           </div>
 
@@ -319,10 +325,18 @@
             <div class="form-group">
               <label class="form-label" for="docExperience">Total Years of Experience</label>
               <input type="text" class="form-control" id="docExperience" placeholder="e.g. 14+ Years" />
+              <div class="quick-chip-row">
+                <span class="quick-chip-label">Quick select:</span>
+                <button type="button" class="quick-chip" data-target="docExperience" data-value="5+ Years">5+ Years</button>
+                <button type="button" class="quick-chip" data-target="docExperience" data-value="10+ Years">10+ Years</button>
+                <button type="button" class="quick-chip" data-target="docExperience" data-value="15+ Years">15+ Years</button>
+                <button type="button" class="quick-chip" data-target="docExperience" data-value="20+ Years">20+ Years</button>
+                <button type="button" class="quick-chip" data-target="docExperience" data-value="25+ Years">25+ Years</button>
+              </div>
             </div>
             <div class="form-group">
               <label class="form-label" for="docDesignation">Current Designation</label>
-              <input type="text" class="form-control" id="docDesignation" placeholder="e.g. Chief Joint Replacement Surgeon & HOD" />
+              <input type="text" class="form-control" id="docDesignation" placeholder="e.g. Chief Joint Replacement Surgeon &amp; HOD" />
             </div>
           </div>
 
@@ -346,13 +360,21 @@
         <div class="form-section-card" id="section4Card">
           <div class="section-header-block">
             <span class="section-badge">Section 04 / 10</span>
-            <h3>🩺 Key Treatments & Clinical Focus Areas</h3>
+            <h3>🩺 Key Treatments &amp; Clinical Focus Areas</h3>
             <p>List the key surgical procedures, health conditions, and specialized medical technologies you offer.</p>
           </div>
 
           <div class="form-group">
             <label class="form-label" for="docProcedures">Key Procedures / Surgeries Performed <span class="optional-mark">(One per line)</span></label>
-            <textarea class="form-control" id="docProcedures" rows="3" placeholder="Robotic Total Knee Replacement (TKR)&#10;Minimally Invasive Total Hip Arthroplasty (THR)&#10;Knee Arthroscopy & ACL Reconstruction"></textarea>
+            <textarea class="form-control" id="docProcedures" rows="3" placeholder="Robotic Total Knee Replacement (TKR)&#10;Minimally Invasive Total Hip Arthroplasty (THR)&#10;Knee Arthroscopy &amp; ACL Reconstruction"></textarea>
+            <div class="quick-chip-row">
+              <span class="quick-chip-label">Quick add:</span>
+              <button type="button" class="quick-chip" data-target="docProcedures" data-value="Robotic Assisted Surgery">Robotic Surgery</button>
+              <button type="button" class="quick-chip" data-target="docProcedures" data-value="Minimally Invasive Arthroplasty">Minimally Invasive</button>
+              <button type="button" class="quick-chip" data-target="docProcedures" data-value="Joint Replacement (TKR/THR)">Joint Replacement</button>
+              <button type="button" class="quick-chip" data-target="docProcedures" data-value="Arthroscopy & Sports Medicine">Arthroscopy</button>
+              <button type="button" class="quick-chip" data-target="docProcedures" data-value="Complex Trauma Care">Complex Trauma</button>
+            </div>
           </div>
 
           <div class="form-group">
@@ -370,7 +392,7 @@
         <div class="form-section-card" id="section5Card">
           <div class="section-header-block">
             <span class="section-badge">Section 05 / 10</span>
-            <h3>📍 Clinic Location & OPD Consultation Timings</h3>
+            <h3>📍 Clinic Location &amp; OPD Consultation Timings</h3>
             <p>Help patients locate your consultation rooms and plan their clinic appointments.</p>
           </div>
 
@@ -386,13 +408,13 @@
 
           <div class="form-grid-2">
             <div class="form-group">
-              <label class="form-label" for="docOpdSchedule">OPD Days & Timings</label>
-              <input type="text" class="form-control" id="docOpdSchedule" placeholder="e.g. Mon–Sat: 10:00 AM – 2:00 PM & 5:00 PM – 8:00 PM" />
+              <label class="form-label" for="docOpdSchedule">OPD Days &amp; Timings</label>
+              <input type="text" class="form-control" id="docOpdSchedule" placeholder="e.g. Mon–Sat: 10:00 AM – 2:00 PM &amp; 5:00 PM – 8:00 PM" />
             </div>
             <div class="form-group">
               <label class="form-label" for="docAppointmentMode">Patient Appointment Mode</label>
               <select class="form-control" id="docAppointmentMode">
-                <option value="WhatsApp & Call">WhatsApp & Direct Call</option>
+                <option value="WhatsApp & Call">WhatsApp &amp; Direct Call</option>
                 <option value="Online Booking Form">Online Appointment Form</option>
                 <option value="Hospital Front Desk">Hospital Front Desk Only</option>
                 <option value="Practo Booking">Direct Practo Instant Booking</option>
@@ -405,17 +427,17 @@
         <div class="form-section-card" id="section6Card">
           <div class="section-header-block">
             <span class="section-badge">Section 06 / 10</span>
-            <h3>🏆 Awards, Recognitions & Patient Statistics</h3>
+            <h3>🏆 Awards, Recognitions &amp; Patient Statistics</h3>
             <p>Showcase social proof metrics, milestones, and medical honors to build deep patient confidence.</p>
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="docMilestone">Patient & Surgery Milestone Numbers</label>
+            <label class="form-label" for="docMilestone">Patient &amp; Surgery Milestone Numbers</label>
             <input type="text" class="form-control" id="docMilestone" placeholder="e.g. 18,000+ Consultations • 4,200+ Successful Surgeries • 99.2% Success Rate" />
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="docAwards">Honors, Citations & Professional Memberships</label>
+            <label class="form-label" for="docAwards">Honors, Citations &amp; Professional Memberships</label>
             <textarea class="form-control" id="docAwards" rows="2" placeholder="e.g. Best Young Orthopedic Surgeon Award (IOACON), Lifetime Member - IOA"></textarea>
           </div>
         </div>
@@ -424,7 +446,7 @@
         <div class="form-section-card" id="section7Card">
           <div class="section-header-block">
             <span class="section-badge">Section 07 / 10</span>
-            <h3>📚 Research, Publications & Academics</h3>
+            <h3>📚 Research, Publications &amp; Academics</h3>
             <p>Highlight your indexed peer-reviewed journal papers, clinical trials, or textbook chapters.</p>
           </div>
 
@@ -444,19 +466,35 @@
         <div class="form-section-card" id="section8Card">
           <div class="section-header-block">
             <span class="section-badge">Section 08 / 10</span>
-            <h3>📸 Photos, Media & Brand Assets</h3>
-            <p>Provide cloud links (Google Drive, Dropbox, iCloud) for high-resolution doctor photos and clinic imagery.</p>
+            <h3>📸 Photos, Media &amp; Brand Assets</h3>
+            <p>Provide cloud links or send your high-resolution photos directly to our WhatsApp number.</p>
+          </div>
+
+          <!-- Direct WhatsApp Photo Submission Notice Card -->
+          <div class="whatsapp-photos-notice">
+            <div class="whatsapp-photos-notice-icon">📱</div>
+            <div class="whatsapp-photos-notice-content">
+              <div class="whatsapp-photos-notice-title">
+                Send Photos Directly on WhatsApp (Recommended)
+              </div>
+              <p class="whatsapp-photos-notice-desc">
+                You can send the photos you want displayed on your portfolio directly to our WhatsApp number: <strong>9493690611</strong>. Our design team will format, touch-up, and optimize them for your website.
+              </p>
+              <a href="https://api.whatsapp.com/send?phone=919493690611&text=Hi%2C%20I%20am%20sending%20my%20photos%20for%20my%20doctor%20portfolio%20website." target="_blank" class="btn-whatsapp-action">
+                <span>💬</span> Send Photos via WhatsApp (9493690611)
+              </a>
+            </div>
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="docHeadshotUrl">Doctor Professional Headshot Photo Link</label>
-            <input type="url" class="form-control" id="docHeadshotUrl" placeholder="https://drive.google.com/... or image link" />
+            <label class="form-label" for="docHeadshotUrl">Doctor Professional Headshot Photo Link (Optional)</label>
+            <input type="url" class="form-control" id="docHeadshotUrl" placeholder="https://drive.google.com/... or leave blank if sending on WhatsApp" />
             <span class="form-hint">A professional high-resolution photo in white coat or clinical scrub is recommended.</span>
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="docClinicPhotosUrl">Clinic / OT / Team Photos Drive Link</label>
-            <input type="url" class="form-control" id="docClinicPhotosUrl" placeholder="https://drive.google.com/drive/folders/..." />
+            <label class="form-label" for="docClinicPhotosUrl">Clinic / OT / Team Photos Drive Link (Optional)</label>
+            <input type="url" class="form-control" id="docClinicPhotosUrl" placeholder="https://drive.google.com/drive/folders/... or leave blank if sending on WhatsApp" />
           </div>
         </div>
 
@@ -464,17 +502,17 @@
         <div class="form-section-card" id="section9Card">
           <div class="section-header-block">
             <span class="section-badge">Section 09 / 10</span>
-            <h3>🎨 Website Design & Call-To-Action Preferences</h3>
+            <h3>🎨 Website Design &amp; Call-To-Action Preferences</h3>
             <p>Choose the aesthetic direction and key action you want visitors to take.</p>
           </div>
 
           <div class="form-grid-2">
             <div class="form-group">
-              <label class="form-label" for="docColorMood">Aesthetic & Color Mood</label>
+              <label class="form-label" for="docColorMood">Aesthetic &amp; Color Mood</label>
               <select class="form-control" id="docColorMood">
-                <option value="luxury_sapphire">💎 Modern Luxury Medical (Sapphire Navy & Cyan Accent)</option>
-                <option value="warm_caring">🌿 Warm Caring Healthcare (Emerald Teal & Soft Slate)</option>
-                <option value="executive_dark">⚡ Surgical Tech Precision (Dark Slate & Precision Glow)</option>
+                <option value="luxury_sapphire">💎 Modern Luxury Medical (Sapphire Navy &amp; Cyan Accent)</option>
+                <option value="warm_caring">🌿 Warm Caring Healthcare (Emerald Teal &amp; Soft Slate)</option>
+                <option value="executive_dark">⚡ Surgical Tech Precision (Dark Slate &amp; Precision Glow)</option>
               </select>
             </div>
             <div class="form-group">
@@ -489,154 +527,23 @@
           </div>
         </div>
 
-        <!-- ================================================================= -->
-        <!-- SECTION 10: 🌐 SOCIAL MEDIA & PROFESSIONAL PROFILES (FLAGSHIP)   -->
-        <!-- ================================================================= -->
-        <div class="form-section-card" id="section10Card" style="border: 2px solid #0284C7;">
-          <div class="section-header-block">
-            <span class="section-badge featured">⭐ Flagship Section 10 / 10</span>
-            <h3>SECTION 10 — 🌐 Social Media & Professional Profiles</h3>
-            <p>
-              Select only the profiles you want displayed on your portfolio website. 
-              Our smart form automatically reveals the link fields for your selected channels, 
-              so you only fill what you actually maintain.
-            </p>
-          </div>
-
-          <div class="section-10-wrapper">
-
-            <!-- Question 🔥: Privacy & Public Display Consent -->
-            <div class="question-box" id="questionBoxConsent">
-              <div class="question-meta">
-                <span class="question-number-badge" style="background: #FEE2E2; color: #991B1B;">🔥 Privacy & Verification</span>
-                <span class="question-type-tag">Single Choice • Required</span>
-              </div>
-              <h4 class="question-title">Are you comfortable displaying these profile links publicly on your portfolio website?</h4>
-              <p class="question-instruction">
-                This gives our web development team clear permission and avoids accidentally publishing any private profile or channel you did not intend for public patient view.
-              </p>
-              <div class="consent-grid" id="consentCardsContainer">
-                <!-- Dynamically generated consent cards -->
-              </div>
-            </div>
-
-            <!-- Question 44: Profile Selection (Checkboxes) -->
-            <div class="question-box" id="questionBox44">
-              <div class="question-meta">
-                <span class="question-number-badge">Question 44</span>
-                <span class="question-type-tag">Checkboxes • Optional</span>
-              </div>
-              <h4 class="question-title">Which online profiles do you have &amp; want to display?</h4>
-              <p class="question-instruction">
-                Select only the profiles you want us to add to your portfolio website. Selecting a platform instantly reveals its dedicated link field below.
-              </p>
-
-              <!-- Category Filters & Quick Presets -->
-              <div class="platforms-filter-bar">
-                <div class="filter-pills">
-                  <button type="button" class="filter-btn active" data-category="all">All Channels (14)</button>
-                  <button type="button" class="filter-btn" data-category="medical">🩺 Medical / Appointments</button>
-                  <button type="button" class="filter-btn" data-category="academic">🎓 Academic / Research</button>
-                  <button type="button" class="filter-btn" data-category="social">📱 Social / Video</button>
-                  <button type="button" class="filter-btn" data-category="custom">🌐 Website & Other</button>
-                </div>
-                <div class="platforms-quick-actions">
-                  <button type="button" class="btn-pill-action" id="btnPresetMedical">🩺 Select Medical Pack</button>
-                  <button type="button" class="btn-pill-action" id="btnPresetTop3">🌟 Select Top 3</button>
-                </div>
-              </div>
-
-              <!-- Selection Grid of Cards -->
-              <div class="platforms-grid" id="platformsSelectGrid">
-                <!-- Rendered dynamically by Section10Manager -->
-              </div>
-
-              <div class="selection-summary-bar" id="platformsSummaryBar">
-                <span>0 profiles selected. Choose your active channels above.</span>
-              </div>
-            </div>
-
-            <!-- Questions 45 to 58: Dynamic Revealed Link Fields -->
-            <div class="question-box" id="questionBoxLinks">
-              <div class="question-meta">
-                <span class="question-number-badge">Questions 45–58</span>
-                <span class="question-type-tag">Smart Dynamic Links</span>
-              </div>
-              <h4 class="question-title">Paste your profile links for selected channels</h4>
-              <p class="question-instruction">
-                Enter your links below. You can test each link with the <strong>🔗 Test Link</strong> button to verify it opens your profile correctly in a new tab.
-              </p>
-
-              <div id="emptyLinksNotice" class="sim-empty-notice" style="background: #F8FAFC; border-radius: var(--radius-md); border: 1px dashed var(--border-medium); padding: 2rem;">
-                <div class="sim-empty-icon">💡</div>
-                <div style="font-weight: 700; color: var(--primary-navy); margin-bottom: 0.25rem;">No Profile Fields Currently Active</div>
-                <div style="font-size: 0.8rem; color: var(--text-muted);">
-                  Select at least one profile in Question 44 above (e.g. Instagram, Practo, LinkedIn) and its input box will dynamically slide in here.
-                </div>
-              </div>
-
-              <!-- Container where selected profile input fields appear -->
-              <div class="revealed-links-container" id="revealedLinksContainer"></div>
-            </div>
-
-            <!-- Question 59: Primary Profile Highlight -->
-            <div class="question-box" id="questionBox59">
-              <div class="question-meta">
-                <span class="question-number-badge">Question 59</span>
-                <span class="question-type-tag">Dropdown • Recommended</span>
-              </div>
-              <h4 class="question-title">Which profile should be highlighted as your primary profile?</h4>
-              <p class="question-instruction">
-                This channel receives a prominent featured spotlight button on your website hero (for instance: <em>"⭐ Book on Practo"</em> or <em>"⭐ Connect on LinkedIn"</em>).
-              </p>
-
-              <div class="primary-profile-box">
-                <div class="primary-select-wrapper">
-                  <select class="form-control" id="primaryProfileSelect" style="flex: 1;" disabled>
-                    <option value="">-- Select profiles in Question 44 first --</option>
-                  </select>
-                  <div class="primary-badge-preview" id="primaryBadgePreview">
-                    <span>No primary profile set</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Question 60: Where should these links appear? -->
-            <div class="question-box" id="questionBox60">
-              <div class="question-meta">
-                <span class="question-number-badge">Question 60</span>
-                <span class="question-type-tag">Checkboxes • Multiple Allowed</span>
-              </div>
-              <h4 class="question-title">Where should these links appear on your website?</h4>
-              <p class="question-instruction">
-                Indicate where you prefer your social and professional profile icons to be placed across the site pages.
-              </p>
-              <div class="placement-grid" id="placementGridContainer">
-                <!-- Rendered dynamically by Section10Manager -->
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- SECTION 11: Review, Export & Final Submission -->
+        <!-- SECTION 10: Review, Export & Final Submission -->
         <div class="form-section-card" id="section11Card">
           <div class="section-header-block">
-            <span class="section-badge">Section 11 / 10</span>
-            <h3>📋 Review, Export & Submission</h3>
-            <p>Verify your details. When satisfied, submit directly to our design team or download a copy for your records.</p>
+            <span class="section-badge">Section 10 / 10</span>
+            <h3>📋 Review, Export &amp; WhatsApp Submission</h3>
+            <p>Verify your details. When satisfied, submit directly to our design team via WhatsApp or download a copy for your records.</p>
           </div>
 
-          <div style="background: #F8FAFC; border-radius: var(--radius-md); padding: 1.5rem; border: 1px solid var(--border-medium); margin-bottom: 1.5rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-              <h4 style="color: var(--primary-navy); font-size: 1rem;">Export & Sharing Tools for Web Designer</h4>
-              <span class="consent-badge badge-success">Zero Data Loss</span>
+          <div class="review-export-box">
+            <div class="review-export-header">
+              <h4>Export &amp; Backup Tools for Web Designer</h4>
+              <span class="consent-badge badge-success">Direct WhatsApp Routing</span>
             </div>
-            <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
-              You can instantly copy a ready-to-send WhatsApp summary message or download the structured JSON file to email to your web developer.
+            <p style="font-size: 0.84rem; color: var(--text-secondary); margin-bottom: 1.15rem; line-height: 1.5;">
+              All form data is routed directly to WhatsApp (9493690611). You can also copy a formatted text summary or download the structured JSON file.
             </p>
-            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+            <div class="review-export-buttons">
               <button type="button" class="btn btn-secondary" id="btnCopyWhatsApp">
                 <span>💬</span> Copy WhatsApp Summary
               </button>
@@ -649,12 +556,15 @@
             </div>
           </div>
 
-          <div style="display: flex; flex-direction: column; gap: 0.85rem; text-align: center;">
-            <button type="submit" class="btn btn-primary" id="btnSubmitForm" style="padding: 1rem 2rem; font-size: 1.05rem;">
-              <span>🚀</span> Finalize &amp; Submit Portfolio Intake
+          <div class="submit-cta-block">
+            <button type="submit" class="btn btn-whatsapp-submit" id="btnSubmitForm">
+              <span>🚀</span> Finalize &amp; Send Directly to WhatsApp (+91 9493690611)
             </button>
-            <span style="font-size: 0.76rem; color: var(--text-muted);">
-              🔒 Encrypted Submission • Our healthcare design team will review your credentials within 24 hours.
+            <span class="submit-disclaimer">
+              <span>📱</span> Submits form &amp; automatically opens WhatsApp with complete doctor details
+            </span>
+            <span class="submit-security-note">
+              🔒 Confidential &amp; Encrypted • Sent directly to our bespoke healthcare portfolio team.
             </span>
           </div>
         </div>
@@ -663,8 +573,20 @@
     </div>
 
     <!-- RIGHT COLUMN: Sticky Live Doctor Portfolio Simulation Dock -->
-    <aside class="preview-drawer">
+    <aside class="preview-drawer" id="previewDrawer">
+      <div class="preview-backdrop" id="previewBackdrop"></div>
       <div class="preview-container">
+        <!-- Mobile Drawer Top Bar with Close Button -->
+        <div class="preview-mobile-bar">
+          <div class="preview-drag-handle"></div>
+          <div class="preview-mobile-title">
+            <span>📱</span> Live Portfolio Preview
+          </div>
+          <button type="button" class="preview-mobile-close-btn" id="btnCloseMobilePreview" aria-label="Close Live Preview">
+            ✕ Close
+          </button>
+        </div>
+
         <!-- Mock Browser Top Bar -->
         <div class="preview-header-bar">
           <div class="browser-controls">
@@ -677,17 +599,17 @@
               <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
               <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
             </svg>
-            <span id="previewBrowserUrl">https://dr-sharma-portfolio.com</span>
+            <span id="previewBrowserUrl">https://doctor-portfolio.com</span>
           </div>
-          <span style="font-size: 0.65rem; color: #64748B; font-weight: 700;">LIVE DOCK</span>
+          <span style="font-size: 0.65rem; color: #94A3B8; font-weight: 700;">LIVE SIMULATION</span>
         </div>
 
         <!-- Preview View Tabs -->
         <div class="preview-mode-switch">
-          <button type="button" class="preview-tab-btn active" data-tab="hero">Hero Social Bar</button>
-          <button type="button" class="preview-tab-btn" data-tab="header">Header Nav</button>
-          <button type="button" class="preview-tab-btn" data-tab="badges">Medical Badges</button>
-          <button type="button" class="preview-tab-btn" data-tab="footer">Footer</button>
+          <button type="button" class="preview-tab-btn active" data-tab="hero">Hero Banner</button>
+          <button type="button" class="preview-tab-btn" data-tab="practice">Clinic &amp; OPD</button>
+          <button type="button" class="preview-tab-btn" data-tab="procedures">Treatments</button>
+          <button type="button" class="preview-tab-btn" data-tab="credentials">Credentials</button>
         </div>
 
         <!-- Canvas Container -->
@@ -704,23 +626,32 @@
 
   </main>
 
+  <!-- Floating Mobile Live Preview Action Button -->
+  <button type="button" class="mobile-preview-fab" id="btnMobilePreviewToggle" aria-label="Open Live Doctor Website Preview">
+    <span class="fab-icon">👁️</span>
+    <span class="fab-text">Live Preview</span>
+  </button>
+
   <!-- Submission Success Modal -->
-  <div id="submissionSuccessModal" style="display: none; position: fixed; inset: 0; z-index: 10000; background: rgba(10, 30, 63, 0.7); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 1.5rem;">
-    <div style="background: white; border-radius: var(--radius-xl); max-width: 520px; width: 100%; padding: 2.25rem; text-align: center; box-shadow: var(--shadow-xl); animation: fieldFadeIn 0.3s ease;">
+  <div id="submissionSuccessModal" style="display: none; position: fixed; inset: 0; z-index: 10000; background: rgba(10, 25, 47, 0.75); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 1.5rem;">
+    <div style="background: white; border-radius: var(--radius-xl); max-width: 540px; width: 100%; padding: 2.25rem; text-align: center; box-shadow: var(--shadow-xl); animation: fieldFadeIn 0.3s ease;">
       <div style="width: 64px; height: 64px; border-radius: 50%; background: #DEF7EC; color: #03543F; font-size: 2rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem;">
         ✓
       </div>
       <h3 style="font-family: var(--font-heading); font-size: 1.6rem; color: var(--primary-navy); margin-bottom: 0.5rem;">
-        Intake Received Successfully!
+        Intake Submitted Successfully!
       </h3>
-      <p style="color: var(--text-secondary); font-size: 0.92rem; margin-bottom: 1.25rem; line-height: 1.5;">
-        Thank you, Doctor. Your portfolio credentials and verified profile channels have been captured. Reference tracking code:
+      <p style="color: var(--text-secondary); font-size: 0.94rem; margin-bottom: 1rem; line-height: 1.5;">
+        Your doctor portfolio intake has been prepared to deliver directly to our WhatsApp: <strong>9493690611</strong>. Reference Code:
       </p>
-      <div style="background: #F1F5F9; border: 1px dashed #CBD5E1; padding: 0.75rem; border-radius: var(--radius-md); font-family: var(--font-mono); font-size: 1.1rem; font-weight: 700; color: var(--primary-blue); margin-bottom: 1.75rem;" id="successRefId">
+      <div style="background: #F1F5F9; border: 1px dashed #CBD5E1; padding: 0.75rem; border-radius: var(--radius-md); font-family: var(--font-mono); font-size: 1.15rem; font-weight: 800; color: var(--primary-blue); margin-bottom: 1.5rem;" id="successRefId">
         DOC-948210
       </div>
-      <div style="display: flex; gap: 0.75rem; justify-content: center;">
-        <button type="button" class="btn btn-primary" id="btnCloseSuccessModal">
+      <div style="display: flex; flex-direction: column; gap: 0.75rem; justify-content: center;">
+        <a id="btnModalSendWhatsApp" href="#" target="_blank" class="btn" style="background: #25D366; color: white; border: none; padding: 0.95rem 1.5rem; font-weight: 800; font-size: 1.02rem; border-radius: var(--radius-md); text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);">
+          <span>📱</span> Open WhatsApp Chat Now (9493690611)
+        </a>
+        <button type="button" class="btn btn-secondary" id="btnCloseSuccessModal">
           Done / Continue Editing
         </button>
       </div>

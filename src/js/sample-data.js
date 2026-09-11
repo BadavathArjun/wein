@@ -56,35 +56,5 @@ export const SAMPLE_DOCTOR_DATA = {
     colorMood: "luxury_sapphire",
     primaryCta: "Book OPD Consultation",
     layoutStyle: "clean_modern"
-  },
-  section10: {
-    selectedPlatforms: [
-      "instagram",
-      "linkedin",
-      "youtube",
-      "google_business",
-      "practo",
-      "google_scholar",
-      "hospital_profile"
-    ],
-    links: {
-      instagram: "https://instagram.com/drprashanth_ortho",
-      linkedin: "https://linkedin.com/in/drprashanthkumar-ortho",
-      youtube: "https://youtube.com/@DrPrashanthJointCare",
-      google_business: "https://maps.app.goo.gl/jointplus-hyderabad",
-      practo: "https://www.practo.com/hyderabad/doctor/dr-k-prashanth-kumar-orthopedist",
-      google_scholar: "https://scholar.google.com/citations?user=KPrashanthOrtho",
-      hospital_profile: "https://jointplushub.com/specialists/dr-prashanth-kumar"
-    },
-    consent: "yes",
-    primaryProfile: "practo",
-    placements: [
-      "header",
-      "hero",
-      "about",
-      "contact",
-      "footer",
-      "social_hub"
-    ]
   }
 };

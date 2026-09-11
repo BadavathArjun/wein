@@ -1,5 +1,5 @@
 // Live Doctor Portfolio Simulation Dock Preview Manager
-import { PLATFORMS } from './platforms.js';
+// Real-time preview of the doctor's live website sections with dynamic themes
 
 export class PortfolioPreviewManager {
   constructor() {
@@ -8,14 +8,15 @@ export class PortfolioPreviewManager {
       fullName: 'Dr. Rahul Sharma',
       degrees: 'MBBS, MS (Ortho), MCh',
       specialty: 'Senior Consultant Orthopedic Surgeon',
-      councilNumber: 'MCI-58492'
-    };
-    this.section10State = {
-      consent: 'yes',
-      selectedPlatforms: [],
-      links: {},
-      primaryProfile: '',
-      placements: []
+      councilNumber: 'TSMC / 64821',
+      hospital: 'Metro Orthopedic Specialty Hospital',
+      experience: '15+ Years',
+      clinicAddress: 'Suite 402, Medical Arts Building, Hyderabad',
+      opdSchedule: 'Mon–Sat: 10:00 AM – 2:00 PM & 5:00 PM – 8:00 PM',
+      procedures: 'Robotic Total Knee Replacement (TKR)\nMinimally Invasive Total Hip Replacement (THR)\nKnee Arthroscopy & ACL Reconstruction',
+      headshotUrl: '',
+      colorMood: 'luxury_sapphire',
+      primaryCta: 'Book OPD Consultation'
     };
   }
 
@@ -36,15 +37,8 @@ export class PortfolioPreviewManager {
   }
 
   updateDoctorData(data) {
-    if (data.fullName) this.doctorData.fullName = data.fullName;
-    if (data.degrees) this.doctorData.degrees = data.degrees;
-    if (data.specialty) this.doctorData.specialty = data.specialty;
-    if (data.councilNumber) this.doctorData.councilNumber = data.councilNumber;
-    this.render();
-  }
-
-  updateSection10(state) {
-    this.section10State = state;
+    if (!data) return;
+    Object.assign(this.doctorData, data);
     this.render();
   }
 
@@ -53,57 +47,40 @@ export class PortfolioPreviewManager {
     const urlBar = document.getElementById('previewBrowserUrl');
     if (!canvas) return;
 
+    // Apply active theme class to canvas
+    const theme = this.doctorData.colorMood || 'luxury_sapphire';
+    canvas.className = `simulation-canvas theme-${theme}`;
+
     // Doctor clean domain
     const cleanSlug = (this.doctorData.fullName || 'doctor')
       .toLowerCase()
       .replace(/[^a-z0-9]/g, '')
       .slice(0, 16);
     if (urlBar) {
-      urlBar.textContent = `https://${cleanSlug}-portfolio.com`;
+      urlBar.textContent = `https://${cleanSlug || 'doctor'}-portfolio.com`;
     }
 
-    const { consent, selectedPlatforms, links, primaryProfile } = this.section10State;
-    const isHiddenPublicly = consent === 'no';
+    // Doctor avatar or photo
+    const avatarContent = this.doctorData.headshotUrl
+      ? `<img src="${this.doctorData.headshotUrl}" alt="${this.doctorData.fullName}" onerror="this.parentElement.innerHTML='👨‍⚕️'"/>`
+      : `👨‍⚕️`;
 
-    // Doctor profile top card
+    // Top doctor card
     const doctorCardHtml = `
       <div class="sim-doctor-card">
         <div class="sim-doctor-avatar">
-          👨‍⚕️
+          ${avatarContent}
         </div>
         <div class="sim-doctor-info">
-          <h4>${this.doctorData.fullName}</h4>
-          <p>${this.doctorData.specialty}</p>
-          <div class="sim-reg">${this.doctorData.degrees} • Reg: ${this.doctorData.councilNumber || 'Verified'}</div>
+          <h4>${this.doctorData.fullName || 'Dr. Doctor Name'}</h4>
+          <p>${this.doctorData.specialty || 'Medical Specialist'}</p>
+          <div class="sim-reg">
+            <span>${this.doctorData.degrees || 'MBBS'}</span> • 
+            <span style="color: #10B981; font-weight: 700;">✓ Reg: ${this.doctorData.councilNumber || 'Verified Council'}</span>
+          </div>
         </div>
       </div>
     `;
-
-    if (isHiddenPublicly) {
-      canvas.innerHTML = `
-        ${doctorCardHtml}
-        <div class="sim-empty-notice" style="background: white; border-radius: var(--radius-md); border: 1px dashed var(--border-medium); padding: 2rem 1rem;">
-          <div class="sim-empty-icon">🔒</div>
-          <div style="font-weight: 700; color: var(--primary-navy); margin-bottom: 0.25rem;">Private / Internal Mode Selected</div>
-          <div style="font-size: 0.76rem; color: var(--text-muted);">
-            You selected <em>"No, don't display them publicly"</em>. Social buttons will be omitted from the public website and kept strictly for agency records.
-          </div>
-        </div>
-      `;
-      return;
-    }
-
-    if (!selectedPlatforms || selectedPlatforms.length === 0) {
-      canvas.innerHTML = `
-        ${doctorCardHtml}
-        <div class="sim-empty-notice">
-          <div class="sim-empty-icon">🌐</div>
-          <div><strong>No Social Profiles Selected</strong></div>
-          <div>Select your active profiles in Section 10 to see them dynamically appear here on your portfolio preview.</div>
-        </div>
-      `;
-      return;
-    }
 
     // Render depending on active tab
     if (this.currentTab === 'hero') {
@@ -111,28 +88,26 @@ export class PortfolioPreviewManager {
         ${doctorCardHtml}
         <div class="sim-box">
           <div class="sim-box-title">
-            <span>Hero Social Proof Bar</span>
-            <span style="font-size: 0.65rem; color: var(--accent-teal);">● Live Preview</span>
+            <span>Hero Banner Simulation</span>
+            <span style="font-size: 0.65rem; color: #10B981; font-weight: 800;">● Live Simulated</span>
           </div>
-          <p style="font-size: 0.74rem; color: var(--text-muted); margin-bottom: 0.85rem;">
-            Placed directly below your introduction & consultation CTA for immediate trust:
+          <div style="font-size: 0.88rem; font-weight: 800; margin-bottom: 0.35rem;">
+            ${this.doctorData.fullName || 'Dr. Doctor Name'}
+          </div>
+          <p style="font-size: 0.76rem; color: var(--text-secondary); margin-bottom: 0.75rem; line-height: 1.45;">
+            ${this.doctorData.specialty || 'Clinical Specialist'}${this.doctorData.experience ? ` with ${this.doctorData.experience} of dedicated clinical expertise` : ''} at ${this.doctorData.hospital || 'Premier Medical Center'}.
           </p>
-          <div class="sim-pills-row">
-            ${selectedPlatforms.map(id => {
-              const platform = PLATFORMS.find(p => p.id === id);
-              if (!platform) return '';
-              const link = links[id] || '#';
-              const isPrimary = primaryProfile === id;
-
-              return `
-                <a href="${link}" target="_blank" class="sim-social-pill ${isPrimary ? 'primary-highlight' : ''}" 
-                   style="background: ${isPrimary ? platform.color : platform.bgLight}; color: ${isPrimary ? '#FFFFFF' : platform.color}; border: 1px solid ${platform.color}40;">
-                  <span style="display: flex;">${platform.icon}</span>
-                  <span>${platform.name}</span>
-                  ${isPrimary ? '<span>⭐</span>' : ''}
-                </a>
-              `;
-            }).join('')}
+          <div style="display: flex; gap: 0.5rem; margin-bottom: 0.85rem;">
+            <div class="sim-accent-btn" style="flex: 1; padding: 0.5rem 0.65rem; border-radius: 6px; font-size: 0.74rem; font-weight: 700; text-align: center; cursor: default;">
+              📅 ${this.doctorData.primaryCta || 'Book Consultation'}
+            </div>
+            <div style="padding: 0.5rem 0.75rem; background: #25D366; color: white; border-radius: 6px; font-size: 0.74rem; font-weight: 700; display: flex; align-items: center; gap: 0.3rem;">
+              💬 WhatsApp
+            </div>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; font-size: 0.68rem; color: var(--text-muted);">
+            <span style="padding: 0.2rem 0.5rem; background: #F1F5F9; border-radius: 4px;">🛡️ State Council Verified</span>
+            <span style="padding: 0.2rem 0.5rem; background: #F1F5F9; border-radius: 4px;">🏥 OPD & Surgical Center</span>
           </div>
         </div>
 
@@ -140,89 +115,88 @@ export class PortfolioPreviewManager {
           <div class="sim-box-title" style="color: #0369A1;">
             <span>💡 Doctor Portfolio Impact</span>
           </div>
-          <div style="font-size: 0.74rem; color: #0C4A6E; line-height: 1.45;">
-            Having <strong>${selectedPlatforms.length} verified channels</strong> listed directly increases patient conversion by <strong>42%</strong> by validating your authentic clinical reputation.
+          <div style="font-size: 0.75rem; color: #0C4A6E; line-height: 1.45;">
+            Your custom portfolio will showcase your verified surgical credentials, direct OPD appointment routing, and direct WhatsApp consultations to patients.
           </div>
         </div>
       `;
-    } else if (this.currentTab === 'header') {
+    } else if (this.currentTab === 'practice') {
       canvas.innerHTML = `
         ${doctorCardHtml}
         <div class="sim-box">
-          <div class="sim-box-title">Header Navigation Mockup</div>
-          <div class="sim-header-mockup">
-            <div class="sim-header-logo">${this.doctorData.fullName.split(' ')[0]} ${this.doctorData.fullName.split(' ')[1] || ''}</div>
-            <div class="sim-header-icons">
-              ${selectedPlatforms.slice(0, 5).map(id => {
-                const platform = PLATFORMS.find(p => p.id === id);
-                if (!platform) return '';
-                return `
-                  <div class="sim-mini-icon-btn" style="color: ${platform.color};" title="${platform.name}">
-                    ${platform.icon}
-                  </div>
-                `;
-              }).join('')}
-            </div>
+          <div class="sim-box-title">
+            <span>Clinical Practice &amp; OPD</span>
+          </div>
+          <div style="font-size: 0.82rem; font-weight: 800; margin-bottom: 0.25rem;">
+            🏥 ${this.doctorData.hospital || 'Primary Hospital Affiliation'}
+          </div>
+          <div style="font-size: 0.74rem; color: var(--text-secondary); margin-bottom: 0.85rem; line-height: 1.4;">
+            📍 ${this.doctorData.clinicAddress || 'Clinic Address & Consultation Suite'}
+          </div>
+          <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 0.75rem; font-size: 0.74rem; margin-bottom: 0.65rem;">
+            <div style="font-weight: 800; margin-bottom: 0.2rem;">⏰ Consultation Timings:</div>
+            <div style="color: var(--text-secondary); font-weight: 500;">${this.doctorData.opdSchedule || 'Monday–Saturday: 10:00 AM – 2:00 PM & 5:00 PM – 8:00 PM'}</div>
+          </div>
+          <div style="display: flex; gap: 0.5rem; font-size: 0.72rem;">
+            <span style="background: #E0F2FE; color: #0369A1; padding: 0.25rem 0.6rem; border-radius: 4px; font-weight: 700;">
+              ✓ In-Person OPD
+            </span>
+            <span style="background: #DCFCE7; color: #166534; padding: 0.25rem 0.6rem; border-radius: 4px; font-weight: 700;">
+              ✓ WhatsApp Booking
+            </span>
           </div>
         </div>
       `;
-    } else if (this.currentTab === 'badges') {
-      canvas.innerHTML = `
-        ${doctorCardHtml}
-        <div class="sim-box">
-          <div class="sim-box-title">Verified Medical & Academic Badges</div>
-          <div class="sim-verified-badges">
-            ${selectedPlatforms.map(id => {
-              const platform = PLATFORMS.find(p => p.id === id);
-              if (!platform) return '';
-              
-              let score = 'Verified Presence';
-              let sub = 'Official Channel';
-              if (id === 'practo') { score = '4.9 ★ (280+ Reviews)'; sub = 'Top Rated Specialist'; }
-              else if (id === 'google_business') { score = '5.0 ★ (190+ Reviews)'; sub = 'Google Verified Clinic'; }
-              else if (id === 'google_scholar') { score = '340+ Citations'; sub = 'Peer Reviewed Publications'; }
-              else if (id === 'orcid') { score = 'Persistent Digital ID'; sub = 'Validated Researcher'; }
-              else if (id === 'hospital_profile') { score = 'Active Staff Appointment'; sub = 'Accredited Hospital'; }
-              else if (id === 'youtube') { score = '12,000+ Subscribers'; sub = 'Patient Education Channel'; }
+    } else if (this.currentTab === 'procedures') {
+      const procList = (this.doctorData.procedures || '')
+        .split('\n')
+        .map(p => p.trim())
+        .filter(Boolean)
+        .slice(0, 5);
 
-              return `
-                <div class="sim-badge-card">
-                  <div class="sim-badge-platform" style="color: ${platform.color};">
-                    ${platform.icon}
-                    <span>${platform.name}</span>
-                  </div>
-                  <div class="sim-badge-rating">${score}</div>
-                  <div class="sim-badge-subtext">${sub}</div>
-                </div>
-              `;
-            }).join('')}
+      canvas.innerHTML = `
+        ${doctorCardHtml}
+        <div class="sim-box">
+          <div class="sim-box-title">
+            <span>Specialized Treatments &amp; Surgeries</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.75rem;">
+            ${procList.length > 0 ? procList.map(p => `
+              <div style="padding: 0.45rem 0.65rem; background: #F8FAFC; border-radius: 6px; border-left: 3px solid #0284C7; font-weight: 700; color: #1E293B; display: flex; align-items: center; gap: 0.4rem;">
+                <span>🩺</span>
+                <span>${p}</span>
+              </div>
+            `).join('') : `
+              <div style="padding: 0.45rem 0.65rem; background: #F8FAFC; border-radius: 6px; border-left: 3px solid #0284C7; font-weight: 700; color: #1E293B;">
+                🩺 Robotic Joint Replacement & Arthroscopy
+              </div>
+              <div style="padding: 0.45rem 0.65rem; background: #F8FAFC; border-radius: 6px; border-left: 3px solid #0284C7; font-weight: 700; color: #1E293B;">
+                🩺 Minimally Invasive Surgery
+              </div>
+            `}
           </div>
         </div>
       `;
-    } else if (this.currentTab === 'footer') {
+    } else if (this.currentTab === 'credentials') {
       canvas.innerHTML = `
         ${doctorCardHtml}
-        <div class="sim-box" style="background: #0F172A; color: white;">
-          <div class="sim-box-title" style="color: #94A3B8;">Footer Directory Preview</div>
-          <div style="font-size: 0.85rem; font-weight: 700; margin-bottom: 0.5rem;">Connect with ${this.doctorData.fullName}</div>
-          <p style="font-size: 0.72rem; color: #94A3B8; margin-bottom: 1rem;">
-            Follow official channels for surgical updates, health tips, and clinic consultations.
-          </p>
-          <div style="display: flex; flex-direction: column; gap: 0.45rem;">
-            ${selectedPlatforms.map(id => {
-              const platform = PLATFORMS.find(p => p.id === id);
-              if (!platform) return '';
-              const link = links[id] || 'Not linked';
-              return `
-                <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.4rem 0.6rem; background: #1E293B; border-radius: var(--radius-sm); font-size: 0.72rem;">
-                  <span style="display: flex; align-items: center; gap: 0.4rem; color: #E2E8F0;">
-                    <span style="color: ${platform.color};">${platform.icon}</span>
-                    <span>${platform.name}</span>
-                  </span>
-                  <span style="color: #38BDF8; font-family: var(--font-mono); font-size: 0.65rem;">↗ Visit</span>
-                </div>
-              `;
-            }).join('')}
+        <div class="sim-box">
+          <div class="sim-box-title">
+            <span>Medical Qualifications &amp; Licensing</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 0.55rem; font-size: 0.74rem;">
+            <div style="padding: 0.55rem 0.75rem; background: #F8FAFC; border-radius: 6px; border: 1px solid #E2E8F0;">
+              <strong style="color: var(--primary-navy); display: block; margin-bottom: 2px;">🎓 Degrees & Certifications:</strong>
+              <div style="color: var(--text-secondary);">${this.doctorData.degrees || 'MBBS, MS, MCh'}</div>
+            </div>
+            <div style="padding: 0.55rem 0.75rem; background: #DEF7EC; border-radius: 6px; border: 1px solid #BCF0DA;">
+              <strong style="color: #03543F; display: block; margin-bottom: 2px;">🛡️ State Medical Council Registration:</strong>
+              <div style="color: #046C4E; font-weight: 800;">${this.doctorData.councilNumber || 'TSMC / 64821 (Verified)'}</div>
+            </div>
+            <div style="padding: 0.55rem 0.75rem; background: #F1F5F9; border-radius: 6px; border: 1px solid #E2E8F0;">
+              <strong style="color: var(--primary-navy); display: block; margin-bottom: 2px;">🏥 Clinical Experience:</strong>
+              <div style="color: var(--text-secondary);">${this.doctorData.experience || '14+ Years in Active Practice'}</div>
+            </div>
           </div>
         </div>
       `;

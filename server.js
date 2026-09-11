@@ -7,12 +7,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const PORT = process.env.PORT || 3000;
-const SUBMISSIONS_DIR = path.join(__dirname, 'submissions');
-
-// Ensure submissions directory exists
-if (!fs.existsSync(SUBMISSIONS_DIR)) {
-  fs.mkdirSync(SUBMISSIONS_DIR, { recursive: true });
-}
 
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -34,7 +28,7 @@ const server = http.createServer((req, res) => {
   const parsedUrl = new URL(req.url, `http://${req.headers.host}`);
   const pathname = parsedUrl.pathname;
 
-  // Handle API: Submit Doctor Intake Data
+  // Handle API: Submit Doctor Intake Data (WhatsApp Direct Workflow)
   if (req.method === 'POST' && pathname === '/api/submit') {
     let body = '';
     req.on('data', chunk => {
@@ -44,22 +38,10 @@ const server = http.createServer((req, res) => {
     req.on('end', () => {
       try {
         const data = JSON.parse(body);
-        const doctorName = (data.identity?.fullName || 'doctor')
-          .toLowerCase()
-          .replace(/[^a-z0-9]/g, '_')
-          .slice(0, 30);
-        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-        const filename = `intake_${doctorName}_${timestamp}.json`;
-        const filePath = path.join(SUBMISSIONS_DIR, filename);
+        const doctorName = data.identity?.fullName || 'Doctor';
+        const submissionId = `DOC-${Date.now().toString().slice(-6)}`;
 
-        const record = {
-          submissionId: `DOC-${Date.now().toString().slice(-6)}`,
-          submittedAt: new Date().toISOString(),
-          ip: req.socket.remoteAddress,
-          data
-        };
-
-        fs.writeFileSync(filePath, JSON.stringify(record, null, 2), 'utf8');
+        console.log(`📥 Intake received for ${doctorName} (ID: ${submissionId}) -> Forwarding directly to WhatsApp`);
 
         res.writeHead(200, {
           'Content-Type': 'application/json',
@@ -67,43 +49,14 @@ const server = http.createServer((req, res) => {
         });
         res.end(JSON.stringify({
           success: true,
-          message: 'Doctor intake data received and saved successfully!',
-          submissionId: record.submissionId,
-          filename
+          message: 'Doctor intake data received successfully! Routing directly to WhatsApp.',
+          submissionId
         }));
       } catch (err) {
         res.writeHead(400, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ success: false, error: 'Invalid JSON payload' }));
       }
     });
-    return;
-  }
-
-  // Handle API: List Submissions
-  if (req.method === 'GET' && pathname === '/api/submissions') {
-    try {
-      const files = fs.readdirSync(SUBMISSIONS_DIR)
-        .filter(f => f.endsWith('.json'))
-        .map(file => {
-          try {
-            const raw = fs.readFileSync(path.join(SUBMISSIONS_DIR, file), 'utf8');
-            return JSON.parse(raw);
-          } catch {
-            return null;
-          }
-        })
-        .filter(Boolean)
-        .sort((a, b) => new Date(b.submittedAt) - new Date(a.submittedAt));
-
-      res.writeHead(200, {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      });
-      res.end(JSON.stringify({ success: true, count: files.length, submissions: files }));
-    } catch (err) {
-      res.writeHead(500, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ success: false, error: err.message }));
-    }
     return;
   }
 
@@ -162,7 +115,7 @@ function startServer(port, attempts = 0) {
 
   server.listen(port, () => {
     console.log(`\n🏥 DocFolio Intake Server running at: http://localhost:${port}`);
-    console.log(`📁 Saved submissions will appear in: ${SUBMISSIONS_DIR}\n`);
+    console.log(`💬 Submissions route directly to WhatsApp (+91 9493690611)\n`);
   });
 }
 
