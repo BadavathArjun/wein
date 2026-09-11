@@ -4,8 +4,8 @@
   "type": "module",
   "description": "Professional Doctor Portfolio Onboarding & Digital Presence Data Collection Suite",
   "scripts": {
-    "dev": "node dev-server.js",
-    "start": "node dev-server.js"
+    "build": "echo 'Static assets ready'",
+    "dev": "node dev-server.js"
   },
   "keywords": [
     "doctor-portfolio",
