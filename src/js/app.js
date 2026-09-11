@@ -11,6 +11,7 @@ class DocFolioApp {
     this.setupInputListeners();
     this.setupQuickChips();
     this.setupSidebarNav();
+    this.setupMobileNavigation();
     this.setupScrollSpy();
     this.setupActionButtons();
     this.loadDraft();
@@ -67,7 +68,7 @@ class DocFolioApp {
     });
   }
 
-  // Sidebar navigation scroll & active highlights
+  // Sidebar navigation scroll & active highlights (Desktop)
   setupSidebarNav() {
     const navItems = document.querySelectorAll('.nav-step-item');
     navItems.forEach(item => {
@@ -79,17 +80,148 @@ class DocFolioApp {
           targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
           navItems.forEach(n => n.classList.remove('active'));
           item.classList.add('active');
-          item.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
         }
       });
     });
   }
 
-  // ScrollSpy to highlight active section and scroll navigation chips into view
+  // Mobile Bottom Bar, Drawer & Stepper Navigation
+  setupMobileNavigation() {
+    const sections = Array.from(document.querySelectorAll('.form-section-card'));
+    let currentSectionIdx = 0;
+
+    const getSectionIndexFromId = (id) => {
+      return sections.findIndex(s => s.getAttribute('id') === id);
+    };
+
+    const scrollToSection = (targetId) => {
+      const targetEl = document.querySelector(targetId);
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
+
+    // Card stepper footer buttons (Prev / Next)
+    document.querySelectorAll('.btn-step-prev, .btn-step-next').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = btn.getAttribute('data-step-target') || btn.getAttribute('href');
+        if (targetId) {
+          scrollToSection(targetId);
+        }
+      });
+    });
+
+    // Mobile Bottom Bar Prev / Next buttons
+    const btnBarPrev = document.getElementById('btnMobileBarPrev');
+    const btnBarNext = document.getElementById('btnMobileBarNext');
+
+    if (btnBarPrev) {
+      btnBarPrev.addEventListener('click', () => {
+        if (currentSectionIdx > 0) {
+          const target = sections[currentSectionIdx - 1];
+          if (target) scrollToSection(`#${target.id}`);
+        }
+      });
+    }
+
+    if (btnBarNext) {
+      btnBarNext.addEventListener('click', () => {
+        if (currentSectionIdx < sections.length - 1) {
+          const target = sections[currentSectionIdx + 1];
+          if (target) scrollToSection(`#${target.id}`);
+        }
+      });
+    }
+
+    // Mobile Drawer open/close
+    const drawer = document.getElementById('mobileNavDrawer');
+    const btnOpen = document.getElementById('btnMobileDrawerOpen');
+    const btnHeaderMenu = document.getElementById('btnHeaderMenu');
+    const btnClose = document.getElementById('btnDrawerClose');
+    const backdrop = document.getElementById('drawerBackdrop');
+
+    const openDrawer = () => {
+      if (drawer) {
+        drawer.classList.add('open');
+        drawer.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+    };
+
+    const closeDrawer = () => {
+      if (drawer) {
+        drawer.classList.remove('open');
+        drawer.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+    };
+
+    btnOpen?.addEventListener('click', openDrawer);
+    btnHeaderMenu?.addEventListener('click', openDrawer);
+    btnClose?.addEventListener('click', closeDrawer);
+    backdrop?.addEventListener('click', closeDrawer);
+
+    // Escape key closes drawer
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && drawer?.classList.contains('open')) {
+        closeDrawer();
+      }
+    });
+
+    // Mobile Drawer item clicks
+    document.querySelectorAll('.drawer-nav-item').forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = item.getAttribute('href');
+        closeDrawer();
+        if (targetId) {
+          setTimeout(() => scrollToSection(targetId), 150);
+        }
+      });
+    });
+
+    // Expose helper to update bottom bar during ScrollSpy
+    this.updateCurrentSectionIndicator = (id) => {
+      const idx = getSectionIndexFromId(id);
+      if (idx !== -1) {
+        currentSectionIdx = idx;
+        const targetCard = sections[idx];
+        const num = targetCard.getAttribute('data-section-number') || `0${idx + 1}`.slice(-2);
+        const name = targetCard.getAttribute('data-section-name') || targetCard.querySelector('h3')?.textContent || 'Section';
+
+        const numEl = document.getElementById('mobileBarNum');
+        const titleEl = document.getElementById('mobileBarTitle');
+
+        if (numEl) numEl.textContent = `${num}/10`;
+        if (titleEl) titleEl.textContent = name;
+
+        if (btnBarPrev) {
+          btnBarPrev.style.opacity = idx === 0 ? '0.35' : '1';
+          btnBarPrev.style.pointerEvents = idx === 0 ? 'none' : 'auto';
+        }
+        if (btnBarNext) {
+          btnBarNext.style.opacity = idx === sections.length - 1 ? '0.35' : '1';
+          btnBarNext.style.pointerEvents = idx === sections.length - 1 ? 'none' : 'auto';
+        }
+
+        // Sync active class in mobile drawer
+        document.querySelectorAll('.drawer-nav-item').forEach(item => {
+          if (item.getAttribute('href') === `#${id}`) {
+            item.classList.add('active');
+          } else {
+            item.classList.remove('active');
+          }
+        });
+      }
+    };
+  }
+
+  // ScrollSpy to highlight active section and update mobile status bar
   setupScrollSpy() {
     const sections = document.querySelectorAll('.form-section-card');
     const navItems = document.querySelectorAll('.nav-step-item');
-    if (!sections.length || !navItems.length) return;
+    if (!sections.length) return;
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -99,13 +231,15 @@ class DocFolioApp {
             if (item.getAttribute('href') === `#${id}`) {
               navItems.forEach(n => n.classList.remove('active'));
               item.classList.add('active');
-              item.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
             }
           });
+          if (this.updateCurrentSectionIndicator) {
+            this.updateCurrentSectionIndicator(id);
+          }
         }
       });
     }, {
-      rootMargin: '-20% 0px -65% 0px'
+      rootMargin: '-15% 0px -60% 0px'
     });
 
     sections.forEach(section => observer.observe(section));
@@ -444,7 +578,6 @@ class DocFolioApp {
       if (data.designPreferences.primaryCta) document.getElementById('docPrimaryCta').value = data.designPreferences.primaryCta;
     }
 
-    this.syncDoctorDataToPreview();
     this.saveDraft();
     this.updateProgress();
   }
@@ -474,7 +607,7 @@ class DocFolioApp {
     }
   }
 
-  // Live Section Progress Calculation & Sidebar Checkmarks
+  // Live Section Progress Calculation, Desktop & Drawer Checkmarks
   updateProgress() {
     const data = this.collectFullFormData();
     
@@ -491,29 +624,34 @@ class DocFolioApp {
     const sec10Filled = sec1Filled && (sec2Filled || sec3Filled);
 
     const sectionsStatus = [
-      { id: 'stepCheck01', filled: sec1Filled },
-      { id: 'stepCheck02', filled: sec2Filled },
-      { id: 'stepCheck03', filled: sec3Filled },
-      { id: 'stepCheck04', filled: sec4Filled },
-      { id: 'stepCheck05', filled: sec5Filled },
-      { id: 'stepCheck06', filled: sec6Filled },
-      { id: 'stepCheck07', filled: sec7Filled },
-      { id: 'stepCheck08', filled: sec8Filled },
-      { id: 'stepCheck09', filled: sec9Filled },
-      { id: 'stepCheck10', filled: sec10Filled }
+      { id: 'stepCheck01', drawerId: 'drawerCheck01', cardId: 'section1Card', filled: sec1Filled },
+      { id: 'stepCheck02', drawerId: 'drawerCheck02', cardId: 'section2Card', filled: sec2Filled },
+      { id: 'stepCheck03', drawerId: 'drawerCheck03', cardId: 'section3Card', filled: sec3Filled },
+      { id: 'stepCheck04', drawerId: 'drawerCheck04', cardId: 'section4Card', filled: sec4Filled },
+      { id: 'stepCheck05', drawerId: 'drawerCheck05', cardId: 'section5Card', filled: sec5Filled },
+      { id: 'stepCheck06', drawerId: 'drawerCheck06', cardId: 'section6Card', filled: sec6Filled },
+      { id: 'stepCheck07', drawerId: 'drawerCheck07', cardId: 'section7Card', filled: sec7Filled },
+      { id: 'stepCheck08', drawerId: 'drawerCheck08', cardId: 'section8Card', filled: sec8Filled },
+      { id: 'stepCheck09', drawerId: 'drawerCheck09', cardId: 'section9Card', filled: sec9Filled },
+      { id: 'stepCheck10', drawerId: 'drawerCheck10', cardId: 'section11Card', filled: sec10Filled }
     ];
 
     let filledCount = 0;
     sectionsStatus.forEach(sec => {
       const el = document.getElementById(sec.id);
-      if (el) {
-        if (sec.filled) {
-          el.classList.add('filled');
-        } else {
-          el.classList.remove('filled');
-        }
+      const drawerEl = document.getElementById(sec.drawerId);
+      const cardEl = document.getElementById(sec.cardId);
+
+      if (sec.filled) {
+        if (el) el.classList.add('filled');
+        if (drawerEl) drawerEl.classList.add('filled');
+        if (cardEl) cardEl.classList.add('section-filled');
+        filledCount++;
+      } else {
+        if (el) el.classList.remove('filled');
+        if (drawerEl) drawerEl.classList.remove('filled');
+        if (cardEl) cardEl.classList.remove('section-filled');
       }
-      if (sec.filled) filledCount++;
     });
 
     const percent = Math.min(100, Math.round((filledCount / 10) * 100));
@@ -521,10 +659,14 @@ class DocFolioApp {
     const fillBar = document.getElementById('heroProgressFill');
     const percentLabel = document.getElementById('heroProgressPercent');
     const stepsLabel = document.getElementById('heroProgressSteps');
+    const mobileFill = document.getElementById('mobileBarFill');
+    const drawerText = document.getElementById('drawerProgressText');
 
     if (fillBar) fillBar.style.width = `${percent}%`;
+    if (mobileFill) mobileFill.style.width = `${percent}%`;
     if (percentLabel) percentLabel.textContent = `${percent}% Complete`;
     if (stepsLabel) stepsLabel.textContent = `${filledCount} of 10 Sections Filled`;
+    if (drawerText) drawerText.textContent = `${filledCount} of 10 Completed (${percent}%)`;
   }
 
   showToast(message, type = 'info') {

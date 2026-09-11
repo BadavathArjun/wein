@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
   <title>DocFolio Medical — Executive Doctor Portfolio Intake Suite</title>
   <meta name="description"
     content="Professional medical onboarding portal for physicians, surgeons, and healthcare specialists to craft bespoke, high-converting portfolio websites." />
@@ -34,7 +34,7 @@
       </div>
 
       <div class="header-actions">
-        <!-- Status Badge -->
+        <!-- Status Badge (Desktop) -->
         <div class="mode-pills">
           <span class="mode-pill-btn active" style="cursor: default;">
             <span>🛡️</span> Verified Healthcare Network
@@ -50,7 +50,12 @@
         <!-- Quick Demo Autofill Button -->
         <button type="button" class="btn btn-secondary btn-sm" id="btnAutofillDemo"
           title="Pre-fill with realistic Orthopedic Surgeon sample profile">
-          <span>✨</span> Demo Doctor
+          <span>✨</span> <span class="btn-label-desktop">Demo Doctor</span><span class="btn-label-mobile">Demo</span>
+        </button>
+
+        <!-- Mobile Drawer Trigger in Header -->
+        <button type="button" class="btn-header-menu" id="btnHeaderMenu" aria-label="Open Sections Menu" title="Browse Sections">
+          <span>☰</span>
         </button>
       </div>
     </div>
@@ -64,7 +69,7 @@
           <span>🔒 Verified Healthcare Agency Portal • Direct WhatsApp Transfer</span>
         </div>
         <h2>Build Your Elite <span>Doctor Portfolio</span></h2>
-        <p>
+        <p class="hero-desc">
           Welcome, Doctor. Share your clinical qualifications, hospital appointments, and surgical expertise.
           Our healthcare design studio packages your profile and routes everything directly to WhatsApp (+91 9493690611)
           to craft your bespoke portfolio website.
@@ -72,15 +77,15 @@
         <div class="hero-highlights">
           <div class="hero-stat">
             <div class="hero-stat-icon">⏱️</div>
-            <div><strong>3–5 Min</strong> Quick Completion</div>
+            <div><strong>3–5 Min</strong> Quick Intake</div>
           </div>
           <div class="hero-stat">
             <div class="hero-stat-icon">📱</div>
-            <div><strong>Direct WhatsApp</strong> Delivery</div>
+            <div><strong>WhatsApp</strong> Instant Routing</div>
           </div>
           <div class="hero-stat">
             <div class="hero-stat-icon">🔒</div>
-            <div><strong>100% Direct</strong> WhatsApp Send</div>
+            <div><strong>100% Direct</strong> Secure Send</div>
           </div>
         </div>
       </div>
@@ -114,15 +119,15 @@
   <!-- Main 3-Column Work Area -->
   <main class="portal-main-layout">
 
-    <!-- LEFT COLUMN: Sticky Navigation Sidebar -->
+    <!-- LEFT COLUMN: Sticky Navigation Sidebar (Desktop/Tablet) -->
     <aside class="sections-sidebar">
       <div class="sidebar-title">
         <span>Portfolio Steps</span>
         <span>10 Sections</span>
       </div>
-      <ul class="sidebar-nav-list">
+      <ul class="sidebar-nav-list" id="desktopNavList">
         <li>
-          <a href="#section1Card" class="nav-step-item active">
+          <a href="#section1Card" class="nav-step-item active" data-step-index="1">
             <span class="nav-step-label">
               <span class="nav-step-num">01</span>
               <span>👨‍⚕️ Basic Identity</span>
@@ -131,7 +136,7 @@
           </a>
         </li>
         <li>
-          <a href="#section2Card" class="nav-step-item">
+          <a href="#section2Card" class="nav-step-item" data-step-index="2">
             <span class="nav-step-label">
               <span class="nav-step-num">02</span>
               <span>🎓 Qualifications</span>
@@ -140,7 +145,7 @@
           </a>
         </li>
         <li>
-          <a href="#section3Card" class="nav-step-item">
+          <a href="#section3Card" class="nav-step-item" data-step-index="3">
             <span class="nav-step-label">
               <span class="nav-step-num">03</span>
               <span>🏥 Clinical Practice</span>
@@ -149,7 +154,7 @@
           </a>
         </li>
         <li>
-          <a href="#section4Card" class="nav-step-item">
+          <a href="#section4Card" class="nav-step-item" data-step-index="4">
             <span class="nav-step-label">
               <span class="nav-step-num">04</span>
               <span>🩺 Treatments &amp; Focus</span>
@@ -158,7 +163,7 @@
           </a>
         </li>
         <li>
-          <a href="#section5Card" class="nav-step-item">
+          <a href="#section5Card" class="nav-step-item" data-step-index="5">
             <span class="nav-step-label">
               <span class="nav-step-num">05</span>
               <span>📍 Clinic &amp; OPD Hours</span>
@@ -167,7 +172,7 @@
           </a>
         </li>
         <li>
-          <a href="#section6Card" class="nav-step-item">
+          <a href="#section6Card" class="nav-step-item" data-step-index="6">
             <span class="nav-step-label">
               <span class="nav-step-num">06</span>
               <span>🏆 Awards &amp; Statistics</span>
@@ -176,7 +181,7 @@
           </a>
         </li>
         <li>
-          <a href="#section7Card" class="nav-step-item">
+          <a href="#section7Card" class="nav-step-item" data-step-index="7">
             <span class="nav-step-label">
               <span class="nav-step-num">07</span>
               <span>📚 Research &amp; Papers</span>
@@ -185,7 +190,7 @@
           </a>
         </li>
         <li>
-          <a href="#section8Card" class="nav-step-item">
+          <a href="#section8Card" class="nav-step-item" data-step-index="8">
             <span class="nav-step-label">
               <span class="nav-step-num">08</span>
               <span>📸 Photos &amp; WhatsApp</span>
@@ -194,7 +199,7 @@
           </a>
         </li>
         <li>
-          <a href="#section9Card" class="nav-step-item">
+          <a href="#section9Card" class="nav-step-item" data-step-index="9">
             <span class="nav-step-label">
               <span class="nav-step-num">09</span>
               <span>🎨 Design Preferences</span>
@@ -203,7 +208,7 @@
           </a>
         </li>
         <li>
-          <a href="#section11Card" class="nav-step-item">
+          <a href="#section11Card" class="nav-step-item" data-step-index="10">
             <span class="nav-step-label">
               <span class="nav-step-num">10</span>
               <span>📋 Review &amp; Submit</span>
@@ -227,9 +232,12 @@
       <form id="doctorIntakeForm" novalidate>
 
         <!-- SECTION 1: Identity & Contact -->
-        <div class="form-section-card" id="section1Card">
+        <div class="form-section-card" id="section1Card" data-section-number="01" data-section-name="Identity & Contact">
           <div class="section-header-block">
-            <span class="section-badge">Section 01 / 10</span>
+            <div class="section-badge-row">
+              <span class="section-badge">Section 01 / 10</span>
+              <span class="section-indicator-dot"></span>
+            </div>
             <h3>👨‍⚕️ Doctor Identity &amp; Primary Contact</h3>
             <p>Enter your professional name, honorific, specialty, and preferred contact coordinates for patient
               inquiries.</p>
@@ -240,7 +248,7 @@
               <label class="form-label" for="docFullName">Full Name (with Honorific) <span
                   class="required-mark">*</span></label>
               <input type="text" class="form-control" id="docFullName" placeholder="e.g. Dr. K. Prashanth Kumar"
-                required />
+                required autocomplete="name" />
             </div>
             <div class="form-group">
               <label class="form-label" for="docDegrees">Degrees &amp; Post-nominals <span
@@ -283,7 +291,7 @@
             <div class="form-group">
               <label class="form-label" for="docPhone">Official Contact Phone <span
                   class="required-mark">*</span></label>
-              <input type="tel" class="form-control" id="docPhone" placeholder="+91 98490 12345" />
+              <input type="tel" class="form-control" id="docPhone" placeholder="+91 98490 12345" autocomplete="tel" />
             </div>
             <div class="form-group">
               <label class="form-label" for="docWhatsapp">WhatsApp Number <span class="optional-mark">(For patient
@@ -293,7 +301,7 @@
             <div class="form-group">
               <label class="form-label" for="docEmail">Primary Professional Email <span
                   class="required-mark">*</span></label>
-              <input type="email" class="form-control" id="docEmail" placeholder="doctor@clinic.com" />
+              <input type="email" class="form-control" id="docEmail" placeholder="doctor@clinic.com" autocomplete="email" />
             </div>
           </div>
 
@@ -301,12 +309,23 @@
             <label class="form-label" for="docCity">City &amp; State / Region of Practice</label>
             <input type="text" class="form-control" id="docCity" placeholder="e.g. Hyderabad &amp; Nirmal, Telangana" />
           </div>
+
+          <!-- Section Stepper Footer -->
+          <div class="section-step-footer">
+            <div></div>
+            <a href="#section2Card" class="btn btn-step-next" data-step-target="#section2Card">
+              <span>Next: Qualifications</span> <span class="step-arrow">→</span>
+            </a>
+          </div>
         </div>
 
         <!-- SECTION 2: Medical Qualifications -->
-        <div class="form-section-card" id="section2Card">
+        <div class="form-section-card" id="section2Card" data-section-number="02" data-section-name="Qualifications">
           <div class="section-header-block">
-            <span class="section-badge">Section 02 / 10</span>
+            <div class="section-badge-row">
+              <span class="section-badge">Section 02 / 10</span>
+              <span class="section-indicator-dot"></span>
+            </div>
             <h3>🎓 Medical Education &amp; Qualifications</h3>
             <p>Outline your medical alma mater, post-graduate degrees, international fellowships, and council
               registration.</p>
@@ -336,12 +355,25 @@
             <input type="text" class="form-control" id="docCouncilNumber"
               placeholder="e.g. TSMC / 64821 — Telangana State Medical Council" />
           </div>
+
+          <!-- Section Stepper Footer -->
+          <div class="section-step-footer">
+            <a href="#section1Card" class="btn btn-step-prev" data-step-target="#section1Card">
+              <span class="step-arrow">←</span> <span>Identity</span>
+            </a>
+            <a href="#section3Card" class="btn btn-step-next" data-step-target="#section3Card">
+              <span>Next: Clinical Practice</span> <span class="step-arrow">→</span>
+            </a>
+          </div>
         </div>
 
         <!-- SECTION 3: Clinical Practice -->
-        <div class="form-section-card" id="section3Card">
+        <div class="form-section-card" id="section3Card" data-section-number="03" data-section-name="Clinical Practice">
           <div class="section-header-block">
-            <span class="section-badge">Section 03 / 10</span>
+            <div class="section-badge-row">
+              <span class="section-badge">Section 03 / 10</span>
+              <span class="section-indicator-dot"></span>
+            </div>
             <h3>🏥 Clinical Practice &amp; Current Appointments</h3>
             <p>Tell us about your current practice base, hospitals, and total years in active medical service.</p>
           </div>
@@ -388,12 +420,25 @@
             <textarea class="form-control" id="docBio" rows="3"
               placeholder="Brief summary of your clinical philosophy, surgical training, and dedication to patient care."></textarea>
           </div>
+
+          <!-- Section Stepper Footer -->
+          <div class="section-step-footer">
+            <a href="#section2Card" class="btn btn-step-prev" data-step-target="#section2Card">
+              <span class="step-arrow">←</span> <span>Qualifications</span>
+            </a>
+            <a href="#section4Card" class="btn btn-step-next" data-step-target="#section4Card">
+              <span>Next: Key Treatments</span> <span class="step-arrow">→</span>
+            </a>
+          </div>
         </div>
 
         <!-- SECTION 4: Treatments & Focus Areas -->
-        <div class="form-section-card" id="section4Card">
+        <div class="form-section-card" id="section4Card" data-section-number="04" data-section-name="Treatments & Focus">
           <div class="section-header-block">
-            <span class="section-badge">Section 04 / 10</span>
+            <div class="section-badge-row">
+              <span class="section-badge">Section 04 / 10</span>
+              <span class="section-indicator-dot"></span>
+            </div>
             <h3>🩺 Key Treatments &amp; Clinical Focus Areas</h3>
             <p>List the key surgical procedures, health conditions, and specialized medical technologies you offer.</p>
           </div>
@@ -429,12 +474,25 @@
             <input type="text" class="form-control" id="docTechnology"
               placeholder="e.g. Stryker Mako Robotic Navigation, HD Karl Storz Arthroscopy Tower" />
           </div>
+
+          <!-- Section Stepper Footer -->
+          <div class="section-step-footer">
+            <a href="#section3Card" class="btn btn-step-prev" data-step-target="#section3Card">
+              <span class="step-arrow">←</span> <span>Practice</span>
+            </a>
+            <a href="#section5Card" class="btn btn-step-next" data-step-target="#section5Card">
+              <span>Next: Clinic &amp; OPD</span> <span class="step-arrow">→</span>
+            </a>
+          </div>
         </div>
 
         <!-- SECTION 5: Clinic OPD & Timings -->
-        <div class="form-section-card" id="section5Card">
+        <div class="form-section-card" id="section5Card" data-section-number="05" data-section-name="Clinic & Timings">
           <div class="section-header-block">
-            <span class="section-badge">Section 05 / 10</span>
+            <div class="section-badge-row">
+              <span class="section-badge">Section 05 / 10</span>
+              <span class="section-indicator-dot"></span>
+            </div>
             <h3>📍 Clinic Location &amp; OPD Consultation Timings</h3>
             <p>Help patients locate your consultation rooms and plan their clinic appointments.</p>
           </div>
@@ -466,12 +524,25 @@
               </select>
             </div>
           </div>
+
+          <!-- Section Stepper Footer -->
+          <div class="section-step-footer">
+            <a href="#section4Card" class="btn btn-step-prev" data-step-target="#section4Card">
+              <span class="step-arrow">←</span> <span>Treatments</span>
+            </a>
+            <a href="#section6Card" class="btn btn-step-next" data-step-target="#section6Card">
+              <span>Next: Awards</span> <span class="step-arrow">→</span>
+            </a>
+          </div>
         </div>
 
         <!-- SECTION 6: Awards & Statistics -->
-        <div class="form-section-card" id="section6Card">
+        <div class="form-section-card" id="section6Card" data-section-number="06" data-section-name="Awards & Stats">
           <div class="section-header-block">
-            <span class="section-badge">Section 06 / 10</span>
+            <div class="section-badge-row">
+              <span class="section-badge">Section 06 / 10</span>
+              <span class="section-indicator-dot"></span>
+            </div>
             <h3>🏆 Awards, Recognitions &amp; Patient Statistics</h3>
             <p>Showcase social proof metrics, milestones, and medical honors to build deep patient confidence.</p>
           </div>
@@ -487,12 +558,25 @@
             <textarea class="form-control" id="docAwards" rows="2"
               placeholder="e.g. Best Young Orthopedic Surgeon Award (IOACON), Lifetime Member - IOA"></textarea>
           </div>
+
+          <!-- Section Stepper Footer -->
+          <div class="section-step-footer">
+            <a href="#section5Card" class="btn btn-step-prev" data-step-target="#section5Card">
+              <span class="step-arrow">←</span> <span>Clinic &amp; OPD</span>
+            </a>
+            <a href="#section7Card" class="btn btn-step-next" data-step-target="#section7Card">
+              <span>Next: Research</span> <span class="step-arrow">→</span>
+            </a>
+          </div>
         </div>
 
         <!-- SECTION 7: Research & Publications -->
-        <div class="form-section-card" id="section7Card">
+        <div class="form-section-card" id="section7Card" data-section-number="07" data-section-name="Research & Papers">
           <div class="section-header-block">
-            <span class="section-badge">Section 07 / 10</span>
+            <div class="section-badge-row">
+              <span class="section-badge">Section 07 / 10</span>
+              <span class="section-indicator-dot"></span>
+            </div>
             <h3>📚 Research, Publications &amp; Academics</h3>
             <p>Highlight your indexed peer-reviewed journal papers, clinical trials, or textbook chapters.</p>
           </div>
@@ -509,12 +593,25 @@
                 placeholder="e.g. Robotic Arthroplasty Outcomes, Early Rehabilitation Protocols" />
             </div>
           </div>
+
+          <!-- Section Stepper Footer -->
+          <div class="section-step-footer">
+            <a href="#section6Card" class="btn btn-step-prev" data-step-target="#section6Card">
+              <span class="step-arrow">←</span> <span>Awards</span>
+            </a>
+            <a href="#section8Card" class="btn btn-step-next" data-step-target="#section8Card">
+              <span>Next: Photos &amp; WhatsApp</span> <span class="step-arrow">→</span>
+            </a>
+          </div>
         </div>
 
         <!-- SECTION 8: Photos & Media Assets -->
-        <div class="form-section-card" id="section8Card">
+        <div class="form-section-card" id="section8Card" data-section-number="08" data-section-name="Photos & Media">
           <div class="section-header-block">
-            <span class="section-badge">Section 08 / 10</span>
+            <div class="section-badge-row">
+              <span class="section-badge">Section 08 / 10</span>
+              <span class="section-indicator-dot"></span>
+            </div>
             <h3>📸 Photos, Media &amp; Brand Assets</h3>
             <p>Provide cloud links or send your high-resolution photos directly to our WhatsApp number.</p>
           </div>
@@ -550,12 +647,25 @@
             <input type="url" class="form-control" id="docClinicPhotosUrl"
               placeholder="https://drive.google.com/drive/folders/... or leave blank if sending on WhatsApp" />
           </div>
+
+          <!-- Section Stepper Footer -->
+          <div class="section-step-footer">
+            <a href="#section7Card" class="btn btn-step-prev" data-step-target="#section7Card">
+              <span class="step-arrow">←</span> <span>Research</span>
+            </a>
+            <a href="#section9Card" class="btn btn-step-next" data-step-target="#section9Card">
+              <span>Next: Design Preferences</span> <span class="step-arrow">→</span>
+            </a>
+          </div>
         </div>
 
         <!-- SECTION 9: Design Preferences -->
-        <div class="form-section-card" id="section9Card">
+        <div class="form-section-card" id="section9Card" data-section-number="09" data-section-name="Design Style">
           <div class="section-header-block">
-            <span class="section-badge">Section 09 / 10</span>
+            <div class="section-badge-row">
+              <span class="section-badge">Section 09 / 10</span>
+              <span class="section-indicator-dot"></span>
+            </div>
             <h3>🎨 Website Design &amp; Call-To-Action Preferences</h3>
             <p>Choose the aesthetic direction and key action you want visitors to take.</p>
           </div>
@@ -579,12 +689,25 @@
               </select>
             </div>
           </div>
+
+          <!-- Section Stepper Footer -->
+          <div class="section-step-footer">
+            <a href="#section8Card" class="btn btn-step-prev" data-step-target="#section8Card">
+              <span class="step-arrow">←</span> <span>Photos</span>
+            </a>
+            <a href="#section11Card" class="btn btn-step-next" data-step-target="#section11Card">
+              <span>Next: Review &amp; Submit</span> <span class="step-arrow">→</span>
+            </a>
+          </div>
         </div>
 
         <!-- SECTION 10: Review, Export & Final Submission -->
-        <div class="form-section-card" id="section11Card">
+        <div class="form-section-card" id="section11Card" data-section-number="10" data-section-name="Review & Submit">
           <div class="section-header-block">
-            <span class="section-badge">Section 10 / 10</span>
+            <div class="section-badge-row">
+              <span class="section-badge">Section 10 / 10</span>
+              <span class="section-indicator-dot"></span>
+            </div>
             <h3>📋 Review, Export &amp; WhatsApp Submission</h3>
             <p>Verify your details. When satisfied, submit directly to our design team via WhatsApp or download a copy
               for your records.</p>
@@ -623,12 +746,144 @@
               🔒 Confidential &amp; Encrypted • Sent directly to our bespoke healthcare portfolio team.
             </span>
           </div>
+
+          <!-- Section Stepper Footer -->
+          <div class="section-step-footer">
+            <a href="#section9Card" class="btn btn-step-prev" data-step-target="#section9Card">
+              <span class="step-arrow">←</span> <span>Back to Design Preferences</span>
+            </a>
+            <div></div>
+          </div>
         </div>
 
       </form>
     </div>
 
   </main>
+
+  <!-- Smart Mobile Bottom Navigation Bar (Fixed on mobile screens) -->
+  <nav class="mobile-bottom-bar" id="mobileBottomBar" aria-label="Mobile Navigation">
+    <div class="mobile-bar-track">
+      <div class="mobile-bar-fill" id="mobileBarFill" style="width: 10%;"></div>
+    </div>
+    <div class="mobile-bar-inner">
+      <button type="button" class="mobile-bar-btn" id="btnMobileDrawerOpen" aria-label="Open Sections Drawer">
+        <span class="mobile-bar-icon">☰</span>
+        <span class="mobile-bar-btn-text">Sections</span>
+      </button>
+
+      <div class="mobile-bar-status" id="mobileBarStatus">
+        <span class="mobile-bar-num" id="mobileBarNum">01/10</span>
+        <span class="mobile-bar-title" id="mobileBarTitle">Identity &amp; Contact</span>
+      </div>
+
+      <div class="mobile-bar-arrows">
+        <button type="button" class="mobile-nav-arrow" id="btnMobileBarPrev" aria-label="Previous Section" title="Previous Section">
+          ‹
+        </button>
+        <button type="button" class="mobile-nav-arrow active" id="btnMobileBarNext" aria-label="Next Section" title="Next Section">
+          ›
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Sections Bottom Drawer / Sheet -->
+  <div class="mobile-drawer-wrap" id="mobileNavDrawer" aria-hidden="true">
+    <div class="drawer-backdrop" id="drawerBackdrop"></div>
+    <div class="drawer-sheet">
+      <div class="drawer-drag-pill"></div>
+      <div class="drawer-header">
+        <div>
+          <h3>Portfolio Steps</h3>
+          <p id="drawerProgressText">1 of 10 Completed (10%)</p>
+        </div>
+        <button type="button" class="drawer-close-btn" id="btnDrawerClose" aria-label="Close Drawer">✕</button>
+      </div>
+
+      <div class="drawer-list-wrap">
+        <ul class="drawer-nav-list" id="drawerNavList">
+          <li>
+            <a href="#section1Card" class="drawer-nav-item active" data-step-index="1">
+              <span class="drawer-nav-num">01</span>
+              <span class="drawer-nav-name">👨‍⚕️ Basic Identity &amp; Contact</span>
+              <span class="drawer-nav-check" id="drawerCheck01">✓</span>
+            </a>
+          </li>
+          <li>
+            <a href="#section2Card" class="drawer-nav-item" data-step-index="2">
+              <span class="drawer-nav-num">02</span>
+              <span class="drawer-nav-name">🎓 Medical Qualifications</span>
+              <span class="drawer-nav-check" id="drawerCheck02">✓</span>
+            </a>
+          </li>
+          <li>
+            <a href="#section3Card" class="drawer-nav-item" data-step-index="3">
+              <span class="drawer-nav-num">03</span>
+              <span class="drawer-nav-name">🏥 Clinical Practice &amp; Hospitals</span>
+              <span class="drawer-nav-check" id="drawerCheck03">✓</span>
+            </a>
+          </li>
+          <li>
+            <a href="#section4Card" class="drawer-nav-item" data-step-index="4">
+              <span class="drawer-nav-num">04</span>
+              <span class="drawer-nav-name">🩺 Treatments &amp; Procedures</span>
+              <span class="drawer-nav-check" id="drawerCheck04">✓</span>
+            </a>
+          </li>
+          <li>
+            <a href="#section5Card" class="drawer-nav-item" data-step-index="5">
+              <span class="drawer-nav-num">05</span>
+              <span class="drawer-nav-name">📍 Clinic Location &amp; OPD Hours</span>
+              <span class="drawer-nav-check" id="drawerCheck05">✓</span>
+            </a>
+          </li>
+          <li>
+            <a href="#section6Card" class="drawer-nav-item" data-step-index="6">
+              <span class="drawer-nav-num">06</span>
+              <span class="drawer-nav-name">🏆 Awards &amp; Patient Milestones</span>
+              <span class="drawer-nav-check" id="drawerCheck06">✓</span>
+            </a>
+          </li>
+          <li>
+            <a href="#section7Card" class="drawer-nav-item" data-step-index="7">
+              <span class="drawer-nav-num">07</span>
+              <span class="drawer-nav-name">📚 Research &amp; Publications</span>
+              <span class="drawer-nav-check" id="drawerCheck07">✓</span>
+            </a>
+          </li>
+          <li>
+            <a href="#section8Card" class="drawer-nav-item" data-step-index="8">
+              <span class="drawer-nav-num">08</span>
+              <span class="drawer-nav-name">📸 Photos &amp; Media Assets</span>
+              <span class="drawer-nav-check" id="drawerCheck08">✓</span>
+            </a>
+          </li>
+          <li>
+            <a href="#section9Card" class="drawer-nav-item" data-step-index="9">
+              <span class="drawer-nav-num">09</span>
+              <span class="drawer-nav-name">🎨 Design Preferences</span>
+              <span class="drawer-nav-check" id="drawerCheck09">✓</span>
+            </a>
+          </li>
+          <li>
+            <a href="#section11Card" class="drawer-nav-item" data-step-index="10">
+              <span class="drawer-nav-num">10</span>
+              <span class="drawer-nav-name">📋 Review &amp; WhatsApp Submit</span>
+              <span class="drawer-nav-check" id="drawerCheck10">✓</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="drawer-footer">
+        <a href="https://api.whatsapp.com/send?phone=919493690611&text=Hi%2C%20I%20have%20a%20question%20regarding%20my%20doctor%20portfolio%20intake."
+          target="_blank" class="drawer-whatsapp-btn">
+          <span>💬</span> Questions? Chat on WhatsApp (9493690611)
+        </a>
+      </div>
+    </div>
+  </div>
 
   <!-- Submission Success Modal -->
   <div id="submissionSuccessModal"

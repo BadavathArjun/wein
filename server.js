@@ -76,6 +76,16 @@ const server = http.createServer((req, res) => {
   }
 
   // Handle API: Submit Doctor Intake Data (WhatsApp Direct Workflow)
+  if (req.method === 'GET' && pathname === '/api/submit') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({
+      status: 'online',
+      service: 'DocFolio Medical Intake API',
+      whatsapp: '+91 9493690611'
+    }));
+    return;
+  }
+
   if (req.method === 'POST' && pathname === '/api/submit') {
     let body = '';
     req.on('data', chunk => {
