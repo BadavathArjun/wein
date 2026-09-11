@@ -1,40 +1,31 @@
 // Main Application Controller for DocFolio Medical Intake Suite
 // Executive Doctor Onboarding & WhatsApp Transmission Engine
-import { PortfolioPreviewManager } from './preview.js';
 import { SAMPLE_DOCTOR_DATA } from './sample-data.js';
 
 const STORAGE_KEY = 'docfolio_medical_intake_draft_v2';
 
 class DocFolioApp {
-  constructor() {
-    this.previewManager = new PortfolioPreviewManager();
-  }
+  constructor() {}
 
   init() {
-    this.previewManager.init();
-
     this.setupInputListeners();
     this.setupQuickChips();
     this.setupSidebarNav();
-    this.setupMobilePreviewDrawer();
     this.setupScrollSpy();
     this.setupActionButtons();
     this.loadDraft();
-    this.syncDoctorDataToPreview();
     this.updateProgress();
   }
 
-  // Listen to input changes in Sections 1-9 to update preview, autosave, and progress
+  // Listen to input changes in Sections to autosave and update progress
   setupInputListeners() {
     const inputs = document.querySelectorAll('.intake-form-container input, .intake-form-container textarea, .intake-form-container select');
     inputs.forEach(input => {
       input.addEventListener('input', () => {
-        this.syncDoctorDataToPreview();
         this.saveDraft();
         this.updateProgress();
       });
       input.addEventListener('change', () => {
-        this.syncDoctorDataToPreview();
         this.saveDraft();
         this.updateProgress();
       });
@@ -69,40 +60,10 @@ class DocFolioApp {
           }
         }
 
-        // Trigger input event to re-evaluate preview, autosave, and progress
+        // Trigger input event to re-evaluate autosave and progress
         targetInput.dispatchEvent(new Event('input', { bubbles: true }));
         this.showToast(`Selected: ${val}`, 'info');
       });
-    });
-  }
-
-  syncDoctorDataToPreview() {
-    const fullName = document.getElementById('docFullName')?.value.trim() || 'Dr. Rahul Sharma';
-    const degrees = document.getElementById('docDegrees')?.value.trim() || 'MBBS, MS (Ortho)';
-    const specialty = document.getElementById('docSpecialty')?.value.trim() || 'Senior Consultant Orthopedic Surgeon';
-    const councilNumber = document.getElementById('docCouncilNumber')?.value.trim() || '';
-    const hospital = document.getElementById('docHospital')?.value.trim() || '';
-    const experience = document.getElementById('docExperience')?.value.trim() || '';
-    const clinicAddress = document.getElementById('docAddress')?.value.trim() || '';
-    const opdSchedule = document.getElementById('docOpdSchedule')?.value.trim() || '';
-    const procedures = document.getElementById('docProcedures')?.value.trim() || '';
-    const headshotUrl = document.getElementById('docHeadshotUrl')?.value.trim() || '';
-    const colorMood = document.getElementById('docColorMood')?.value || 'luxury_sapphire';
-    const primaryCta = document.getElementById('docPrimaryCta')?.value || 'Book OPD Consultation';
-
-    this.previewManager.updateDoctorData({
-      fullName,
-      degrees,
-      specialty,
-      councilNumber,
-      hospital,
-      experience,
-      clinicAddress,
-      opdSchedule,
-      procedures,
-      headshotUrl,
-      colorMood,
-      primaryCta
     });
   }
 
@@ -121,45 +82,6 @@ class DocFolioApp {
           item.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
         }
       });
-    });
-  }
-
-  // Mobile Live Preview Drawer toggle and backdrop listeners
-  setupMobilePreviewDrawer() {
-    const toggleBtn = document.getElementById('btnMobilePreviewToggle');
-    const closeBtn = document.getElementById('btnCloseMobilePreview');
-    const backdrop = document.getElementById('previewBackdrop');
-    const drawer = document.getElementById('previewDrawer');
-
-    if (!drawer) return;
-
-    const openDrawer = () => {
-      drawer.classList.add('mobile-open');
-      document.body.style.overflow = 'hidden';
-      this.syncDoctorDataToPreview();
-    };
-
-    const closeDrawer = () => {
-      drawer.classList.remove('mobile-open');
-      document.body.style.overflow = '';
-    };
-
-    if (toggleBtn) {
-      toggleBtn.addEventListener('click', openDrawer);
-    }
-
-    if (closeBtn) {
-      closeBtn.addEventListener('click', closeDrawer);
-    }
-
-    if (backdrop) {
-      backdrop.addEventListener('click', closeDrawer);
-    }
-
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && drawer.classList.contains('mobile-open')) {
-        closeDrawer();
-      }
     });
   }
 
