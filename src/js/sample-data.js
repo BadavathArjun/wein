@@ -56,5 +56,10 @@ export const SAMPLE_DOCTOR_DATA = {
     colorMood: "luxury_sapphire",
     primaryCta: "Book OPD Consultation",
     layoutStyle: "clean_modern"
+  },
+  additionalNotes: {
+    customRequests: "Please include a Patient FAQ section answering recovery time for robotic knee replacement. Also highlight cashless insurance empanelment for Star Health and Care Insurance. Multilingual consultation available in English, Hindi, and Telugu.",
+    additionalLinks: "https://drive.google.com/drive/folders/dr-prashanth-certificates-and-press",
+    targetTimeline: "Standard (Within 5–7 days)"
   }
 };
